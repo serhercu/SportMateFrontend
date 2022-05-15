@@ -9,7 +9,7 @@
           height="200"
         />
       </v-col>
-
+      <p>{{dTextPrueba}}</p>
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           Welcome to Vuetify
@@ -92,10 +92,23 @@
 </template>
 
 <script>
+
+import srvEmployee from '@/services/srv-employeePrueba'
   export default {
     name: 'HelloWorld',
-
+    methods: {
+      fGetEmployees() {
+        console.log('hola')
+        srvEmployee.getEmployees().then((response) => {
+          this.dTextPrueba = response.data
+        })
+      }
+    },
+    mounted() {
+      this.fGetEmployees()
+    },
     data: () => ({
+      dTextPrueba: null,
       ecosystem: [
         {
           text: 'vuetify-loader',
