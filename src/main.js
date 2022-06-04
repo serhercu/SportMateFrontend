@@ -10,6 +10,12 @@ import messagesi18 from '@/config/i18n-General'
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)
+const moment = require('moment')
+require('moment/locale/es')
+ 
+Vue.use(require('vue-moment'), {
+    moment
+})
 
 const i18n = new VueI18n({
   locale: 'es', // set locale
