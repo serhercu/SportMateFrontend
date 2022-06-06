@@ -1,23 +1,24 @@
 <template>
   <v-app>
     <Menu></Menu>
-    <CreateGame></CreateGame>
+    <v-content>
+      <component v-bind:is="pagina"></component>
+    </v-content>
   </v-app>
 </template>
 
 <script>
 
 import Menu from '@/components/menu/Menu'
-import CreateGame from '@/components/games/CreateGame'
+import AppBase from '@/components/AppBase'
 
 export default {
   name: 'App',
   components: {
-    Menu,
-    CreateGame
+    Menu
   },
   data: () => ({
-    //
+    pagina: AppBase
   }),
 };
 </script>
