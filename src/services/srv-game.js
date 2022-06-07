@@ -10,7 +10,8 @@ const srvGame = {
       date: gameToCreate.date,
       privacy: gameToCreate.privacy,
       sport: gameToCreate.sport,
-      province: gameToCreate.province
+      province: gameToCreate.province,
+      time: gameToCreate.time
     }
     return HTTP_APP.post('/createGame', payload).then((response) => {
       return response.data
