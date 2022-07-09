@@ -7,19 +7,28 @@ const messagesi18 = {
       accept: 'Aceptar',
       cancel: 'Cancelar',
       next: 'Siguiente',
-      back: 'Atrás'
+      back: 'Atrás',
+      findGame: 'Buscar partido'
+    },
+    label: {
+      time: 'Hora',
+      date: 'Fecha',
+      sport: 'Deporte',
+      level: 'Nivel',
+      province: 'Provincia'
     },
     createGame: {
       createGame: 'Crear partido',
       sport: 'Deporte',
       selectSport: 'Selecciona un deporte',
-      dateAndLocation: 'Fecha y lugar',
+      dateAndTime: 'Fecha y hora',
+      location: 'Lugar',
       selectDate: 'Selecciona una fecha',
       selectTime: 'Selecciona una hora',
       selectLocation: 'Elige un lugar',
       selectNumberPlayers: '¿Cuántos jugadores necesitas?',
       selectLevel: 'Indica el nivel de tu partido',
-      numberOfPlayers: 'Número de jugadores',
+      numberOfPlayers: 'Jugadores',
       playersNeeded: '¿Cuántos jugadores buscas?',
       gameDescription: 'Descripción',
       privateGame: 'Solo mis amigos pueden unirse',

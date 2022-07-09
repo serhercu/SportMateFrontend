@@ -1,10 +1,10 @@
 <template>
-<v-hover v-slot="{ hover }">
+  <v-hover v-slot="{ hover }">
     <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" align-center>
       <v-icon class="align-center" size="100">{{pSport.image}}</v-icon>
       <v-card-title class="justify-center">{{$t('sport.' + pSport.name)}}</v-card-title>
     </v-card>
-</v-hover>
+  </v-hover>
 </template>
 
 <script>

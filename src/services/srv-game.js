@@ -13,12 +13,20 @@ const srvGame = {
       province: gameToCreate.province,
       time: gameToCreate.time
     }
-    return HTTP_APP.post('/createGame', payload).then((response) => {
+    return HTTP_APP.post('/game/createGame', payload).then((response) => {
       return response.data
     }).catch((error) => {
       console.log(error)
     })
+  },
+  findGameWithParams(payload) {
+    return HTTP_APP.get('/game/findGameWithParams', payload).then((response) => {
+      return response
+    }).catch((error) => {
+      console.log(error)
+    })
   }
+
 
 }
 

@@ -10,12 +10,10 @@
             <small>{{dSelectedSport !== null ? $t('sport.' + dSelectedSport.name) : ''}}</small>
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 2" step="2" color="amber">{{$t("createGame.dateAndLocation")}}
-            <small>{{dSelectedDate !== null ? dSelectedDate : ''}}</small>
+          <v-stepper-step :complete="e1 > 2" step="2" color="amber">{{$t("createGame.dateAndTime")}}
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 3" step="3" color="amber">{{$t("createGame.dateAndLocation")}}
-            <small>{{dSelectedDate !== null ? dSelectedDate : ''}}</small>
+          <v-stepper-step :complete="e1 > 3" step="3" color="amber">{{$t("createGame.location")}}
           </v-stepper-step>
           <v-divider></v-divider>
           <v-stepper-step :complete="e1 > 4" step="4" color="amber">{{$t("createGame.numberOfPlayers")}}
@@ -67,7 +65,7 @@
           </v-container>
           <v-layout justify-end>
             <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-            <v-btn color="primary" @click="fHandleDate">{{$t("btn.next")}}</v-btn>
+            <v-btn color="amber" @click="fHandleDate">{{$t("btn.next")}}</v-btn>
           </v-layout>
         </v-stepper-content>
 
@@ -83,7 +81,7 @@
           </v-container>
           <v-layout justify-end>
             <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-            <v-btn color="primary" @click="fHandleLocation">{{$t("btn.next")}}</v-btn>
+            <v-btn color="amber" @click="fHandleLocation">{{$t("btn.next")}}</v-btn>
           </v-layout>
         </v-stepper-content>
 
@@ -111,7 +109,7 @@
           </v-container>
           <v-layout justify-end>
             <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-            <v-btn color="primary" @click="fHandlePlayersSelect">{{$t("btn.next")}}</v-btn>
+            <v-btn color="amber" @click="fHandlePlayersSelect">{{$t("btn.next")}}</v-btn>
           </v-layout>
         </v-stepper-content>
 
@@ -125,7 +123,7 @@
           </v-container>
           <v-layout justify-end>
             <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-            <v-btn color="primary" @click="fHandleDescriptionSelector">{{$t("btn.next")}}</v-btn>
+            <v-btn color="amber" @click="fHandleDescriptionSelector">{{$t("btn.next")}}</v-btn>
           </v-layout>
         </v-stepper-content>
 
@@ -133,7 +131,7 @@
         <v-stepper-content step="6">
             <v-layout justify-end>
               <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-              <v-btn color="primary" @click="e1 = 1">{{$t("btn.next")}}</v-btn>
+              <v-btn color="amber" @click="e1 = 1">{{$t("btn.next")}}</v-btn>
             </v-layout>
         </v-stepper-content>
       </v-stepper-items>
@@ -158,7 +156,7 @@
 import SportCard from '@/components/cards/SportCard'
 import NumberSelector from '@/components/util/NumberSelector'
 
-import { format, parseISO, formatISO } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 import srvSport from '@/services/srv-sport'
 import srvGame from '@/services/srv-game'
@@ -245,7 +243,6 @@ import srvProvince from '@/services/srv-province'
       },
       fCreateGame () {
         srvGame.createGame(this.dGame).then(() => {
-          console.log('Created')
         })
       }
     },
