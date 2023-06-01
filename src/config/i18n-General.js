@@ -40,6 +40,29 @@ const messagesi18 = {
       medium: 'Medio',
       high: 'Alto',
       veryHigh: 'Muy alto'
+    },
+    register: {
+      step: 'Paso',
+      userEmail: 'Usuario y email',
+      basicData: 'Datos básicos',
+      yourSports: '¿Qué deportes practicas?',
+      yearsOld: 'años',
+      addSport: 'Añadir deporte',
+      thanks: 'Gracias por registrarte. Tu cuenta ha sido creada.',
+      birthday: 'Fecha de nacimiento'
+    },
+    label: {
+      email: 'Email',
+      username: 'Usuario',
+      selectLevel: '¿Qué nivel tienes?',
+      name: 'Nombre',
+      surname: 'Apellido(s)',
+      password: 'Contraseña',
+      confirmPassword: 'Repetir contraseña'
+    },
+    errors: {
+      userAlreadyExists: 'El nombre de usuario ya está en uso',
+      emailAlreadyExists: 'El email ya está en uso'
     }
   },
   en: {

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import CreateGame from '@/components/games/CreateGame'
+import Register from '@/components/authentication/Register'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     path: '/createGame',
     name: 'createGame',
     component: CreateGame
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
 ]
 

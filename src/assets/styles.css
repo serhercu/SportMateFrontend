@@ -1,0 +1,52 @@
+/* Contants */
+:root {
+  --error-color: #ef5350;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+.titleStepperContent {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: right;
+}
+.datValidationError {
+  font-size: 0.75rem;
+  color: #ef5350;
+  font-weight: 400;
+  box-shadow: none !important;
+  line-height: 1.2;
+}
+
+.datValidationErrorLabel .v-label {
+  color: var(--error-color) !important;
+}
+
+.datValidationErrorLabel .v-input__slot::before {
+  border-color: var(--error-color) !important;
+}
+
+.datValidationErrorLabel .v-input__append-inner .v-icon {
+  color: var(--error-color);
+}
+
+.datValidationErrorLabel--text {
+  color: var(--error-color) !important;
+  caret-color: var(--error-color) !important;
+}
+
+.datSecondary {
+  background-color: blue;
+  border-color: blue;
+}
+
+.red-box {
+  display: inline-block;
+  padding: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
