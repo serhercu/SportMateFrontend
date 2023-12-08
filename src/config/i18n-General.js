@@ -7,7 +7,8 @@ const messagesi18 = {
       accept: 'Aceptar',
       cancel: 'Cancelar',
       next: 'Siguiente',
-      back: 'Atrás'
+      back: 'Atrás',
+      home: 'Volver al menú principal'
     },
     createGame: {
       createGame: 'Crear partido',
@@ -22,7 +23,7 @@ const messagesi18 = {
       playersNeeded: '¿Cuántos jugadores buscas?',
       gameDescription: 'Descripción',
       privateGame: 'Solo mis amigos pueden unirse',
-      created: '¡Creado!',
+      created: '¡Has creado un partido!',
       addComment: 'Añade algún comentario sobre tu partida',
       addProvince: 'Selecciona una provincia',
       addLocation: 'Indica una dirección'

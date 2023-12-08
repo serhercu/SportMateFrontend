@@ -51,7 +51,6 @@
                 <v-layout justify-center>
                   <v-date-picker v-model="dSelectedDate" @change="dDatePicker = false" color="blue-grey darken-2" locale="es-es"></v-date-picker>
                 </v-layout>
-                <v-text-field :value="cDateFormatted" readonly @click:clear="dSelectedDate = null"></v-text-field>
               </v-col>
               <v-col cols="12" lg="6">
                 <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLocation")}}</span></p>
@@ -109,11 +108,9 @@
         </v-stepper-content>
 
         <!-- Created -->
-        <v-stepper-content step="5">
-            <v-layout justify-end>
-              <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-              <v-btn color="primary" @click="e1 = 1">{{$t("btn.next")}}</v-btn>
-            </v-layout>
+        <v-stepper-content step="5">            
+          <p>{{$t('createGame.created')}}</p>
+          <v-btn color="primary" @click="$router.push('/home')">{{$t("btn.home")}}</v-btn>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -181,7 +178,7 @@ import srvProvince from '@/services/srv-province'
       fGetAllLevels () {
         srvLevel.getAllLevels().then((result) => {
           this.dLevels = result
-          this.dLevelSelected = result[2]
+          this.dLevelSelected = result[2].value
         })
       },
       fGetAllProvinces() {
@@ -212,7 +209,8 @@ import srvProvince from '@/services/srv-province'
       },
       fHandleDescriptionSelector () {
         this.dGame.description = this.dSelectedDescription
-        this.fCreateGame()
+        this.fCreateGame()        
+        this.e1 += 1
       },
       fChangeNumber(val) {
         this.dNumberPlayers = val
@@ -222,11 +220,6 @@ import srvProvince from '@/services/srv-province'
           console.log('created')
         })
       }
-    },
-    computed: {
-      cDateFormatted () {
-        return this.dSelectedDate ? this.$moment(this.dSelectedDate).format('dddd, MMMM Do YYYY') : ''
-      },
     }
   }
 </script>
