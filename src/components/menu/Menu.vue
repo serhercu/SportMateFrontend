@@ -21,16 +21,23 @@
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
-              <v-img src="https://randomuser.me/api/portraits/women/85.jpg"></v-img>
+              <v-img :src="cIsLogged ? 'https://randomuser.me/api/portraits/women/85.jpg' : require('@/assets/unknown.avif')"></v-img>
           </v-list-item-avatar>
         </v-list-item>
 
         <v-list-item link>
-          <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Sandra Adams
-          </v-list-item-title>
-          <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+          <v-list-item-content v-if="cIsLogged">
+            <v-list-item-title class="text-h6">
+              {{ cPlayerInfo.name + ' ' + cPlayerInfo.surname }}
+            </v-list-item-title>
+            <v-list-item-subtitle>{{ cPlayerInfo.username }}</v-list-item-subtitle>
+          </v-list-item-content>
+          <v-list-item-content v-else>
+            <v-flex>
+              <span>{{ $t('menu.notLogged') }}</span>
+              <v-btn text @click="$router.push('/login')">{{$t("menu.login")}}</v-btn>
+              <v-btn text @click="$router.push('/register')">{{$t("menu.register")}}</v-btn>
+            </v-flex>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -38,23 +45,11 @@
       <v-divider></v-divider>
 
       <v-list nav dense>
-        <v-list-item link>
+        <v-list-item link @click="$router.push('/login')">
           <v-list-item-icon>
-          <v-icon>mdi-folder</v-icon>
+          <v-icon>mdi-magnify</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>My Files</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-          <v-icon>mdi-account-multiple</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Shared with me</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-          <v-icon>mdi-star</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Starred</v-list-item-title>
+          <v-list-item-title>{{$t("searchGame.search")}}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -82,6 +77,14 @@ export default {
       localStorage.setItem(Constants.IS_LOGGED, false)
       localStorage.removeItem(Constants.PLAYER_INFO)
       location.reload()
+    }
+  },
+  computed: {
+    cIsLogged () {
+      return localStorage.getItem(Constants.IS_LOGGED) === true ||  localStorage.getItem(Constants.IS_LOGGED) === 'true'
+    },
+    cPlayerInfo() {
+      return JSON.parse(localStorage.getItem(Constants.PLAYER_INFO))
     }
   }
 }

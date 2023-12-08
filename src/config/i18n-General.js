@@ -28,6 +28,14 @@ const messagesi18 = {
       addProvince: 'Selecciona una provincia',
       addLocation: 'Indica una dirección'
     },
+    searchGame: {
+      search: 'Buscar partida'
+    },
+    menu: {
+      notLogged: '¿Tienes cuenta?',
+      login: 'Inicia sesión',
+      register: 'Regístrate'
+    },
     sport: {
       Tennis: 'Tenis',
       Basketball: 'Baloncesto',
