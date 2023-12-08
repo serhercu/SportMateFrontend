@@ -18,6 +18,7 @@ const srvAuth = {
       return response.data
     }).catch((error) => {
       console.log(error)
+      throw error
     })
   },
   checkUsernameEmail(username, email) {
@@ -31,6 +32,21 @@ const srvAuth = {
       return response.data
     }).catch((error) => {
       console.log(error)
+      throw error
+    })
+  },
+  login(username, password) {
+    let payload = {
+      params: {
+        username,
+        password
+      }
+    }
+    return HTTP_APP.get('/auth/login', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
     })
   }
 }

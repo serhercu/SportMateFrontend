@@ -49,7 +49,9 @@ const messagesi18 = {
       yearsOld: 'años',
       addSport: 'Añadir deporte',
       thanks: 'Gracias por registrarte. Tu cuenta ha sido creada.',
-      birthday: 'Fecha de nacimiento'
+      birthday: 'Fecha de nacimiento',
+      login: 'Login',
+      loginStart: 'Iniciar sesión'
     },
     label: {
       email: 'Email',
@@ -62,7 +64,8 @@ const messagesi18 = {
     },
     errors: {
       userAlreadyExists: 'El nombre de usuario ya está en uso',
-      emailAlreadyExists: 'El email ya está en uso'
+      emailAlreadyExists: 'El email ya está en uso',
+      userPasswordError: 'El nombre de usuario o contraseña son incorrectos'
     }
   },
   en: {
