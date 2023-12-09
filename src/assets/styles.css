@@ -51,3 +51,9 @@
   border: 2px solid #ff0000;
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
+
+.componentPrimary {
+  background-color: #ffc107;
+  color: #000000;
+  border: 2px solid #a27a03;
+}

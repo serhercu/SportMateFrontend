@@ -12,13 +12,29 @@ const srvGame = {
       sport: gameToCreate.sport,
       province: gameToCreate.province
     }
-    return HTTP_APP.post('/createGame', payload).then((response) => {
+    return HTTP_APP.post('/game/createGame', payload).then((response) => {
       return response.data
     }).catch((error) => {
       console.log(error)
     })
+  },
+  async getGames(sportId, levelValue, dateStart, dateEnd, locationId) {
+    let payload = {
+      params: {
+        sportId,
+        levelValue,
+        dateStart,
+        dateEnd,
+        locationId
+      }
+    }
+    return HTTP_APP.get('/game/games', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
   }
-
 }
 
 export default srvGame

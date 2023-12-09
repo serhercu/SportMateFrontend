@@ -16,6 +16,7 @@ const messagesi18 = {
       selectSport: 'Selecciona un deporte',
       dateAndLocation: 'Fecha y lugar',
       selectDate: 'Selecciona una fecha',
+      selectDateRange: 'Selecciona una fecha o un rango',
       selectLocation: 'Elige un lugar',
       selectNumberPlayers: '¿Cuántos jugadores necesitas?',
       selectLevel: 'Indica el nivel de tu partido',

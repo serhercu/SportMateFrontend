@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <Menu :pIsLogged="cIsLogged"></Menu>
-    <v-content>
+    <v-main>
       <component v-bind:is="dPagina"></component>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

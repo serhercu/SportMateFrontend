@@ -45,11 +45,20 @@
       <v-divider></v-divider>
 
       <v-list nav dense>
-        <v-list-item link @click="$router.push('/login')">
+        <!-- Search Game -->
+        <v-list-item link @click="$router.push('/searchGame')">
           <v-list-item-icon>
           <v-icon>mdi-magnify</v-icon>
           </v-list-item-icon>
           <v-list-item-title>{{$t("searchGame.search")}}</v-list-item-title>
+        </v-list-item>
+
+        <!-- Create Game -->
+        <v-list-item link @click="$router.push('/createGame')">
+          <v-list-item-icon>
+          <v-icon>mdi-magnify</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{$t("createGame.createGame")}}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
