@@ -1,11 +1,11 @@
 <template>
 	<v-container fluid>
-		<v-card class="pa-4" color="amber">
+		<v-card class="pa-4" color="amber" >
 			<v-card-title>
 				Titulo
 			</v-card-title>
 			<!-- Sport -->
-			<v-select v-model="dSportFilter" :items="dSports" :label="$t('createGame.selectSport')" return-object
+			<v-select v-model="dSportFilter" :items="dSports" :label="$t('createGame.selectSport')" clearable return-object
 				rounded background-color="white" prepend-icon="mdi-tennis-ball-outline">
 				<template v-slot:item="{ item }">
 					<span>{{ $t('sport.' + item.name) }}</span>
@@ -16,7 +16,7 @@
 			</v-select>
 			
 			<!-- Level -->
-			<v-select v-model="dLevelFilter" :items="dLevels" :label="$t('createGame.selectLevel')" return-object
+			<v-select v-model="dLevelFilter" :items="dLevels" :label="$t('createGame.selectLevel')" clearable return-object
 				rounded background-color="white" prepend-icon="mdi-account-star-outline">
 				<template v-slot:item="{ item }">
 					<span>{{ $t('level.' + item.description) }}</span>
@@ -27,7 +27,7 @@
 			</v-select>
 
 			<!-- Location -->
-			<v-select v-model="dLocationFilter" :items="dLocations" :label="$t('createGame.selectLocation')"
+			<v-select v-model="dLocationFilter" :items="dLocations" :label="$t('createGame.selectLocation')" clearable
 			 	rounded background-color="white" prepend-icon="mdi-map-marker">
 			</v-select>
 			
@@ -39,7 +39,7 @@
 							<v-text-field :label="$t('createGame.selectDateRange')" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
 							rounded background-color="white"></v-text-field>
 						</template>
-						<v-date-picker v-model="dDateRange" range></v-date-picker>
+						<v-date-picker v-model="dDateRange" clearable range></v-date-picker>
 					</v-menu>
 				</v-flex>
 				<v-flex :cols="9">
@@ -55,7 +55,11 @@
 		</v-card>
 	</v-container>
 </template>
-
+<style scoped>
+.fixed-filters {
+	position: fixed; 
+}
+</style>
 <script>
 import srvSport from '@/services/srv-sport'
 import srvLevel from '@/services/srv-level'

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-toolbar text>
+    <v-app-bar app>
       <v-app-bar-nav-icon class="grey--text" @click="dOpenDrawer = !dOpenDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
         <span class="font-weight-light">SPORT</span>
@@ -15,9 +15,9 @@
         <span>{{ $t('register.login') }}</span>
         <v-icon right>mdi-account</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
-    <v-navigation-drawer absolute temporary fixed v-model="dOpenDrawer" class="amber">
+    <v-navigation-drawer v-model="dOpenDrawer" absolute temporary fixed class="amber">
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -46,7 +46,7 @@
 
       <v-list nav dense>
         <!-- Search Game -->
-        <v-list-item link @click="$router.push('/searchGame')">
+        <v-list-item :disabled="!cIsLogged" link @click="$router.push('/searchGame')">
           <v-list-item-icon>
           <v-icon>mdi-magnify</v-icon>
           </v-list-item-icon>
@@ -54,9 +54,9 @@
         </v-list-item>
 
         <!-- Create Game -->
-        <v-list-item link @click="$router.push('/createGame')">
+        <v-list-item :disabled="!cIsLogged" link @click="$router.push('/createGame')">
           <v-list-item-icon>
-          <v-icon>mdi-magnify</v-icon>
+          <v-icon>mdi-plus-circle-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-title>{{$t("createGame.createGame")}}</v-list-item-title>
         </v-list-item>

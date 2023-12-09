@@ -10,9 +10,7 @@
 
       <!-- Search Results (Right Side) -->
       <v-flex xs8>
-        <ListGame
-          :filteredResults="filteredResults"
-        />
+        <ListGame :pGames="dSearchGames"/>
       </v-flex>
     </v-layout>
   </v-container>
@@ -31,21 +29,16 @@ export default {
   },
   data() {
     return {
-      // Assuming you have an array of game data
-      allGames: null,
-      // Filtered results to be passed to the SearchResults component
-      filteredResults: null
+      dSearchGames: []
     };
   },
   methods: {
     // Callback function to receive filters from SearchFilters component
     fSearchWithFilters(filters) {
-			srvGame.getGames(filters.sport, filters.level, filters.dateStart, filters.dateEnd, filters.location)
-    },
-    filterGames(filters) {
-      // Implement your filtering logic here based on filters
-      // Return the filtered results
+			srvGame.getGames(filters.sport, filters.level, filters.dateStart, filters.dateEnd, filters.location).then((response) => {
+        this.dSearchGames = response
+      })
     }
   }
-};
+}
 </script>

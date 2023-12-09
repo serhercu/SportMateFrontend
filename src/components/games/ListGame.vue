@@ -1,23 +1,25 @@
 <template>
-  <v-card>
-    <!-- Display the filtered results -->
-    <v-list>
-      <v-list-item v-for="result in filteredResults" :key="result.id">
-        <v-list-item-content>
-          <v-list-item-title>{{ result.name }}</v-list-item-title>
-          <!-- Display other game details here -->
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-card>
+  <v-container v-bind="{ [`grid-list-${size}`]: true }" fluid>
+    <v-flex>
+      <v-layout v-for="game in pGames" :key="game" xs4 pa-2>
+        <GameCard :pGame="game" :pHover="hover"></GameCard>
+      </v-layout>
+    </v-flex>
+  </v-container>
 </template>
 
 <script>
+
+import GameCard from '@/components/cards/GameCard'
 export default {
+  components: {
+    GameCard
+  },
   props: {
-    filteredResults: {
+    pGames: {
       type: Array,
-      default: () => []
+      required: false,
+      default: []
     }
   }
 };

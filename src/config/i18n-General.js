@@ -30,7 +30,7 @@ const messagesi18 = {
       addLocation: 'Indica una dirección'
     },
     searchGame: {
-      search: 'Buscar partida'
+      search: 'Buscar partido'
     },
     menu: {
       notLogged: '¿Tienes cuenta?',
