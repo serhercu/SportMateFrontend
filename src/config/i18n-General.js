@@ -27,10 +27,12 @@ const messagesi18 = {
       created: '¡Has creado un partido!',
       addComment: 'Añade algún comentario sobre tu partida',
       addProvince: 'Selecciona una provincia',
+      addCity: 'Selecciona una ciudad',
       addLocation: 'Indica una dirección'
     },
     searchGame: {
-      search: 'Buscar partido'
+      search: 'Buscar partido',
+      searchQuestionFilters: '¿Qué partido buscas?'
     },
     menu: {
       notLogged: '¿Tienes cuenta?',

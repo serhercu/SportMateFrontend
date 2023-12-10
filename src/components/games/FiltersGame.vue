@@ -2,7 +2,7 @@
 	<v-container fluid>
 		<v-card class="pa-4" color="amber" >
 			<v-card-title>
-				Titulo
+				{{ $t('searchGame.searchQuestionFilters') }}
 			</v-card-title>
 			<!-- Sport -->
 			<v-select v-model="dSportFilter" :items="dSports" :label="$t('createGame.selectSport')" clearable return-object
@@ -27,8 +27,14 @@
 			</v-select>
 
 			<!-- Location -->
-			<v-select v-model="dLocationFilter" :items="dLocations" :label="$t('createGame.selectLocation')" clearable
+			<v-select v-model="dLocationFilter" :items="dLocations" :label="$t('createGame.selectLocation')" clearable return-object
 			 	rounded background-color="white" prepend-icon="mdi-map-marker">
+				 <template v-slot:item="{ item }">
+					<span>{{ item.name }}</span>
+				</template>
+				<template v-slot:selection="{ item }">
+					<span>{{ item.name }}</span>
+				</template>
 			</v-select>
 			
 			<!-- Datepicker -->
@@ -63,6 +69,8 @@
 <script>
 import srvSport from '@/services/srv-sport'
 import srvLevel from '@/services/srv-level'
+import srvCity from '@/services/srv-city'
+
 export default {
   data() {
     return {
@@ -78,6 +86,7 @@ export default {
 	mounted() {
 		this.fGetAllSports()
 		this.fGetAllLevels()
+		this.fGetAllCities()
 	},
   methods: {
     fApplyFilters() {
@@ -115,6 +124,11 @@ export default {
 		fGetAllLevels () {
 			srvLevel.getAllLevels().then((result) => {
 				this.dLevels = result
+			})
+		},
+		fGetAllCities() {
+			srvCity.getAllCities().then((result) => {
+				this.dLocations = result
 			})
 		},
 		fCastDate(inputDate) {

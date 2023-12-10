@@ -54,7 +54,7 @@
               </v-col>
               <v-col cols="12" lg="6">
                 <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLocation")}}</span></p>
-                <v-autocomplete v-model="dSelectedProvince" :items="dProvinces" :label="$t('createGame.addProvince')" item-value="id" item-text="name" solo></v-autocomplete>
+                <v-autocomplete v-model="dSelectedCity" :items="dCities" :label="$t('createGame.addCity')" item-value="id" item-text="name" return-object solo></v-autocomplete>
                 <v-text-field :value="dSelectedLocation" :label="$t('createGame.addLocation')" clearable></v-text-field>
               </v-col>
             </v-row>
@@ -76,7 +76,7 @@
               </v-col>
               <v-col align-start cols="1" lg="6">
                 <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLevel")}}</span></p>
-                <v-select v-model="dLevelSelected" :items="dLevels" item-value="value" solo>
+                <v-select v-model="dLevelSelected" :items="dLevels" item-value="id" solo>
                   <template v-slot:item="{ item }">
                     <span>{{ $t('level.' + item.description) }}</span>
                   </template>
@@ -139,7 +139,7 @@ import { format, parseISO } from 'date-fns'
 import srvSport from '@/services/srv-sport'
 import srvGame from '@/services/srv-game'
 import srvLevel from '@/services/srv-level'
-import srvProvince from '@/services/srv-province'
+import srvCity from '@/services/srv-city'
 
   export default {
     components: {
@@ -160,14 +160,14 @@ import srvProvince from '@/services/srv-province'
         dSelectedDescription: '',
         dLevels: [],
         dLevelSelected: null,
-        dProvinces: [],
-        dSelectedProvince: null
+        dCities: [],
+        dSelectedCity: null
       }
     },
     mounted() {
       this.fGetAllSports()
       this.fGetAllLevels()
-      this.fGetAllProvinces()
+      this.fGetAllCities()
     },
     methods: {
       fGetAllSports () {
@@ -181,9 +181,9 @@ import srvProvince from '@/services/srv-province'
           this.dLevelSelected = result[2].value
         })
       },
-      fGetAllProvinces() {
-        srvProvince.getAllProvinces().then((result) => {
-          this.dProvinces = result
+      fGetAllCities() {
+        srvCity.getAllCities().then((result) => {
+          this.dCities = result
         })
       },
       fHandleSportSelect (sport) {
@@ -194,7 +194,7 @@ import srvProvince from '@/services/srv-province'
       fHandleDateLocation () {
         this.dGame.date = this.dSelectedDate
         this.dGame.location = this.dSelectedLocation
-        this.dGame.province = this.dSelectedProvince
+        this.dGame.city = this.dSelectedCity
         this.e1 += 1
       },
       fHandlePlayersSelect () {

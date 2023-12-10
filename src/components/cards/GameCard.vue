@@ -10,7 +10,7 @@
 						<v-card-title>{{$t('sport.' + pGame.sport.name)}}</v-card-title>
 						<v-card-subtitle>
 							<v-icon>mdi-map-marker</v-icon>
-							{{$t('sport.' + pGame.sport.name)}}
+							{{ pGame.city.name }}
 						</v-card-subtitle>
 						<v-card-text>
 							<v-icon>mdi-calendar</v-icon>
