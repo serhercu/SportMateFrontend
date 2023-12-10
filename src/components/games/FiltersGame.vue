@@ -1,5 +1,4 @@
 <template>
-	<v-container fluid>
 		<v-card class="pa-4" color="amber" >
 			<v-card-title>
 				{{ $t('searchGame.searchQuestionFilters') }}
@@ -57,15 +56,10 @@
 				</v-flex>
 			</v-layout>
 			
-			<v-btn @click="fApplyFilters">Apply Filters</v-btn>
+			<v-btn @click="fApplyFilters">{{ $t("searchGame.search") }}</v-btn>
 		</v-card>
-	</v-container>
 </template>
-<style scoped>
-.fixed-filters {
-	position: fixed; 
-}
-</style>
+
 <script>
 import srvSport from '@/services/srv-sport'
 import srvLevel from '@/services/srv-level'

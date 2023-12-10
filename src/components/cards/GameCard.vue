@@ -5,7 +5,6 @@
 					<v-flex xs1 sm1 md1 lg1>
 						<v-icon size="100">{{ pGame.sport.image }}</v-icon>
 					</v-flex>
-          <!-- class="justify-center" -->
 					<v-flex xs9 sm9 md9 lg9 ml-2>
 						<v-card-title>{{$t('sport.' + pGame.sport.name)}}</v-card-title>
 						<v-card-subtitle>

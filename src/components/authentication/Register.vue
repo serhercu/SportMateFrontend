@@ -115,7 +115,7 @@
             </v-stepper-content>
 
             <v-layout>
-              <v-flex v-if="dStep <= 3" class="button-wrapper-left">
+              <v-flex v-if="dStep <= 3 && dStep > 1" class="button-wrapper-left">
                 <v-btn @click="fNextStep(false)">{{$t('btn.back')}}</v-btn>
               </v-flex>
               <v-flex v-if="dStep < 4" class="button-wrapper">

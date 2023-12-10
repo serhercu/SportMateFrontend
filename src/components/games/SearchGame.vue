@@ -1,15 +1,11 @@
 <template>
   <v-container fluid>
     <v-layout>
-      <!-- Filter Card (Left Side) -->
-      <v-flex xs4>
-        <FiltersGame
-          @applyFilters="fSearchWithFilters"
-        />
+      <v-flex xs4 ma-1>
+        <FiltersGame @applyFilters="fSearchWithFilters"/>
       </v-flex>
 
-      <!-- Search Results (Right Side) -->
-      <v-flex xs8>
+      <v-flex xs8 ma-1>
         <ListGame :pGames="dSearchGames"/>
       </v-flex>
     </v-layout>
@@ -29,11 +25,10 @@ export default {
   },
   data() {
     return {
-      dSearchGames: []
+      dSearchGames: null
     };
   },
   methods: {
-    // Callback function to receive filters from SearchFilters component
     fSearchWithFilters(filters) {
 			srvGame.getGames(filters.sport, filters.level, filters.dateStart, filters.dateEnd, filters.location).then((response) => {
         this.dSearchGames = response

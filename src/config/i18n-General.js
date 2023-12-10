@@ -31,7 +31,8 @@ const messagesi18 = {
       addLocation: 'Indica una dirección'
     },
     searchGame: {
-      search: 'Buscar partido',
+      search: 'Buscar',
+      searchGame: 'Buscar partido',
       searchQuestionFilters: '¿Qué partido buscas?'
     },
     menu: {

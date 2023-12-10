@@ -50,7 +50,7 @@
           <v-list-item-icon>
           <v-icon>mdi-magnify</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>{{$t("searchGame.search")}}</v-list-item-title>
+          <v-list-item-title>{{$t("searchGame.searchGame")}}</v-list-item-title>
         </v-list-item>
 
         <!-- Create Game -->
