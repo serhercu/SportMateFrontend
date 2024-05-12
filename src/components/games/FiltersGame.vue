@@ -49,7 +49,7 @@
 				</v-flex>
 				<v-flex :cols="9">
 					<v-layout>
-						<v-flex v-for="(date, i) in dDateRange">
+						<v-flex v-for="(date, i) in dDateRange" v-bind:key="dDateRange.id">
 							<v-chip class="ma-2" color="primary" variant="outlined">{{ fCastDate(date) }}</v-chip>
 						</v-flex>
 					</v-layout>

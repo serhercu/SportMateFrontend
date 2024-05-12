@@ -2,13 +2,13 @@
   <nav>
     <v-app-bar app>
       <v-app-bar-nav-icon class="grey--text" @click="dOpenDrawer = !dOpenDrawer"></v-app-bar-nav-icon>
-      <v-toolbar-title class="text-uppercase grey--text">
+      <v-toolbar-title class="text-uppercase grey--text" @click="$router.push('/home')">
         <span class="font-weight-light">SPORT</span>
         <span>MATE</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn v-if="pIsLogged" @click="fLogout" text color ="grey">
-        <span>Sign out</span>
+        <span>{{ $t('menu.signout') }}</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
       <v-btn v-else text @click="$router.push('/login')" color ="grey">
@@ -85,6 +85,7 @@ export default {
     fLogout () {
       localStorage.setItem(Constants.IS_LOGGED, false)
       localStorage.removeItem(Constants.PLAYER_INFO)
+      this.$router.push('/home')
       location.reload()
     }
   },

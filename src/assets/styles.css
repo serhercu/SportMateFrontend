@@ -1,6 +1,8 @@
 /* Contants */
 :root {
   --error-color: #ef5350;
+  --secondary-color: #CFD8DC;
+  --third-color: #90A4AE;
 }
 
 .align-center {
@@ -56,4 +58,25 @@
   background-color: #ffc107;
   color: #000000;
   border: 2px solid #a27a03;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+.box {
+  border: 3px solid var(--secondary-color);
+  text-align: center;
+  border-radius: 25px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.subtitle-upper {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: var(--third-color);
 }

@@ -51,6 +51,9 @@
                 <v-layout justify-center>
                   <v-date-picker v-model="dSelectedDate" @change="dDatePicker = false" color="blue-grey darken-2" locale="es-es"></v-date-picker>
                 </v-layout>
+                <v-layout justify-center>
+                  <v-time-picker v-model="dSelectedTime" :landscape="true" color="blue-grey darken-2"></v-time-picker>
+                </v-layout>
               </v-col>
               <v-col cols="12" lg="6">
                 <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLocation")}}</span></p>
@@ -76,7 +79,7 @@
               </v-col>
               <v-col align-start cols="1" lg="6">
                 <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLevel")}}</span></p>
-                <v-select v-model="dLevelSelected" :items="dLevels" item-value="id" solo>
+                <v-select v-model="dLevelSelected" :items="dLevels" return-object solo>
                   <template v-slot:item="{ item }">
                     <span>{{ $t('level.' + item.description) }}</span>
                   </template>
@@ -161,7 +164,8 @@ import srvCity from '@/services/srv-city'
         dLevels: [],
         dLevelSelected: null,
         dCities: [],
-        dSelectedCity: null
+        dSelectedCity: null,
+        dSelectedTime: null
       }
     },
     mounted() {
@@ -178,7 +182,7 @@ import srvCity from '@/services/srv-city'
       fGetAllLevels () {
         srvLevel.getAllLevels().then((result) => {
           this.dLevels = result
-          this.dLevelSelected = result[2].value
+          this.dLevelSelected = result[2]
         })
       },
       fGetAllCities() {
@@ -193,6 +197,7 @@ import srvCity from '@/services/srv-city'
       },
       fHandleDateLocation () {
         this.dGame.date = this.dSelectedDate
+        this.dGame.time = this.dSelectedTime
         this.dGame.location = this.dSelectedLocation
         this.dGame.city = this.dSelectedCity
         this.e1 += 1

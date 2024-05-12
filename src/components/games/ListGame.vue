@@ -19,8 +19,8 @@
 </template>
 
 <script>
-
 import GameCard from '@/components/cards/GameCard'
+
 export default {
   components: {
     GameCard
@@ -32,5 +32,5 @@ export default {
       default: null
     }
   }
-};
+}
 </script>

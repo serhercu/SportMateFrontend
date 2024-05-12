@@ -8,7 +8,8 @@ const messagesi18 = {
       cancel: 'Cancelar',
       next: 'Siguiente',
       back: 'Atrás',
-      home: 'Volver al menú principal'
+      home: 'Volver al menú principal',
+      confirm: 'Confirmar'
     },
     createGame: {
       createGame: 'Crear partido',
@@ -35,10 +36,17 @@ const messagesi18 = {
       searchGame: 'Buscar partido',
       searchQuestionFilters: '¿Qué partido buscas?'
     },
+    gamePage: {
+      details: 'Más información',
+      players: 'Jugadores',
+      join: 'Unirme',
+      leave: 'Abandonar partido'
+    },
     menu: {
       notLogged: '¿Tienes cuenta?',
       login: 'Inicia sesión',
-      register: 'Regístrate'
+      register: 'Regístrate',
+      signout: 'Cerrar sesión'
     },
     sport: {
       Tennis: 'Tenis',
@@ -74,6 +82,9 @@ const messagesi18 = {
       surname: 'Apellido(s)',
       password: 'Contraseña',
       confirmPassword: 'Repetir contraseña'
+    },
+    dialog: {
+      leaveGameConfirmation: '¿Seguro que quieres abandonar el partido?'
     },
     errors: {
       userAlreadyExists: 'El nombre de usuario ya está en uso',
