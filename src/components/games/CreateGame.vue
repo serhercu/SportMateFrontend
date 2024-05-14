@@ -139,6 +139,8 @@ import NumberSelector from '@/components/util/NumberSelector'
 
 import { format, parseISO } from 'date-fns'
 
+import Constants from '@/util/constants'
+
 import srvSport from '@/services/srv-sport'
 import srvGame from '@/services/srv-game'
 import srvLevel from '@/services/srv-level'
@@ -193,6 +195,7 @@ import srvCity from '@/services/srv-city'
       fHandleSportSelect (sport) {
         this.dSelectedSport = sport
         this.dGame.sport = this.dSelectedSport
+        this.dGame.playerCreator = JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id
         this.e1 += 1
       },
       fHandleDateLocation () {

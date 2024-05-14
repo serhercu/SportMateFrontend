@@ -26,7 +26,13 @@
 				</v-flex>
 			</v-flex>
 			<v-flex xs2 sm2 md2 lg2>
-				<v-btn v-if="!cBlockJoinButton" @click="fJoinGame" :disabled="dGame.players.length === dGame.playersRequired + 1"
+				<v-btn v-if="cIsCanceled" disabled color="primary">{{ $t("gamePage.gameCanceled") }}</v-btn>
+				<DialogApp v-else-if="cIsUserCreator" @confirm="fCancelGame" :pTitle="$t('gamePage.cancel')" :pDescription="$t('dialog.cancelGameConfirmation')">
+					<template v-slot="{ openDialog, closeDialog }">
+						<v-btn @click="openDialog" color="primary">{{ $t("gamePage.cancel") }}</v-btn>
+					</template>
+				</DialogApp>
+				<v-btn v-else-if="!cBlockJoinButton" @click="fJoinGame" :disabled="dGame.players.length === dGame.playersRequired + 1"
 					color="primary">{{ $t("gamePage.join") }}
 				</v-btn>
 				<DialogApp v-else @confirm="fLeaveGame" :pTitle="$t('gamePage.leave')" :pDescription="$t('dialog.leaveGameConfirmation')">
@@ -67,6 +73,7 @@ import Constants from '@/util/constants'
 import srvGame from '@/services/srv-game'
 
 import { format } from 'date-fns'
+import constants from '@/util/constants'
 
 export default {
   components: {
@@ -100,6 +107,12 @@ export default {
 		cBlockJoinButton() {
 			const playerJoined = this.dGame.players.find(gamePlayer => gamePlayer.id === 	this.dPlayer.id);
 			return playerJoined
+		},
+		cIsUserCreator() {
+			return this.dPlayer.id === this.dGame.playerCreatorId
+		},
+		cIsCanceled() {
+			return this.dGame.status === Constants.GAME_STATUS_CANCELED
 		}
 	},
 	methods: {
@@ -114,6 +127,11 @@ export default {
 		},
 		fJoinGame() {
 			srvGame.joinGame(this.dGame.id, this.dPlayer.id).then((response) => {
+				this.dGame = response
+			})
+		},
+		fCancelGame() {
+			srvGame.cancelGame(this.dGame.id, this.dPlayer.id).then((response) => {
 				this.dGame = response
 			})
 		},

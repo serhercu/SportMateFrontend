@@ -24,7 +24,8 @@ const srvGame = {
       privacy: gameToCreate.privacy,
       sport: gameToCreate.sport,
       city: gameToCreate.city,
-      time: gameToCreate.time
+      time: gameToCreate.time,
+      playerCreatorId: gameToCreate.playerCreator
     }
     return HTTP_APP.post('/game/createGame', payload).then((response) => {
       return response.data
@@ -66,6 +67,17 @@ const srvGame = {
       playerId
     }
     return HTTP_APP.post('/game/leaveGame', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  async cancelGame(gameId, playerId) {
+    let payload = {
+      gameId,
+      playerId
+    }
+    return HTTP_APP.post('/game/cancelGame', payload).then((response) => {
       return response.data
     }).catch((error) => {
       console.log(error)

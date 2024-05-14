@@ -40,7 +40,9 @@ const messagesi18 = {
       details: 'Más información',
       players: 'Jugadores',
       join: 'Unirme',
-      leave: 'Abandonar partido'
+      leave: 'Abandonar partido',
+      cancel: 'Cancelar partido',
+      gameCanceled: 'Partido cancelado'
     },
     menu: {
       notLogged: '¿Tienes cuenta?',
@@ -84,7 +86,8 @@ const messagesi18 = {
       confirmPassword: 'Repetir contraseña'
     },
     dialog: {
-      leaveGameConfirmation: '¿Seguro que quieres abandonar el partido?'
+      leaveGameConfirmation: '¿Seguro que quieres abandonar el partido?',
+      cancelGameConfirmation: '¿Seguro que quieres cancelar el partido?'
     },
     errors: {
       userAlreadyExists: 'El nombre de usuario ya está en uso',
