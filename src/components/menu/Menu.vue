@@ -7,11 +7,11 @@
         <span>MATE</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="pIsLogged" @click="fLogout" text color ="grey">
+      <v-btn v-if="pIsLogged" @click="fLogout" text color="grey">
         <span>{{ $t('menu.signout') }}</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
-      <v-btn v-else text @click="$router.push('/login')" color ="grey">
+      <v-btn v-else text @click="$router.push('/login')" color="grey">
         <span>{{ $t('register.login') }}</span>
         <v-icon right>mdi-account</v-icon>
       </v-btn>
@@ -21,7 +21,7 @@
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
-              <v-img :src="cIsLogged ? 'https://randomuser.me/api/portraits/women/85.jpg' : require('@/assets/unknown.avif')"></v-img>
+            <v-img :src="cIsLogged ? 'https://randomuser.me/api/portraits/women/85.jpg' : require('@/assets/unknown.avif')"></v-img>
           </v-list-item-avatar>
         </v-list-item>
 
@@ -35,8 +35,8 @@
           <v-list-item-content v-else>
             <v-flex>
               <span>{{ $t('menu.notLogged') }}</span>
-              <v-btn text @click="$router.push('/login')">{{$t("menu.login")}}</v-btn>
-              <v-btn text @click="$router.push('/register')">{{$t("menu.register")}}</v-btn>
+              <v-btn text @click="$router.push('/login')">{{ $t('menu.login') }}</v-btn>
+              <v-btn text @click="$router.push('/register')">{{ $t('menu.register') }}</v-btn>
             </v-flex>
           </v-list-item-content>
         </v-list-item>
@@ -48,18 +48,34 @@
         <!-- Search Game -->
         <v-list-item :disabled="!cIsLogged" link @click="$router.push('/searchGame')">
           <v-list-item-icon>
-          <v-icon>mdi-magnify</v-icon>
+            <v-icon>mdi-magnify</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>{{$t("searchGame.searchGame")}}</v-list-item-title>
+          <v-list-item-title>{{ $t('searchGame.searchGame') }}</v-list-item-title>
         </v-list-item>
 
         <!-- Create Game -->
         <v-list-item :disabled="!cIsLogged" link @click="$router.push('/createGame')">
           <v-list-item-icon>
-          <v-icon>mdi-plus-circle-outline</v-icon>
+            <v-icon>mdi-plus-circle-outline</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>{{$t("createGame.createGame")}}</v-list-item-title>
+          <v-list-item-title>{{ $t('createGame.createGame') }}</v-list-item-title>
         </v-list-item>
+
+        <!-- Nested Item -->
+        <v-list-group v-if="cIsLogged" prepend-icon="mdi-karate">
+          <template v-slot:activator>
+            <v-list-item-title>{{ $t('menu.myGames') }}</v-list-item-title>
+          </template>
+          <v-flex ml-2>
+            <v-list-item link @click="$router.push('/myGames/gamesFinished')">
+              <v-list-item-icon>
+                <v-icon>mdi-calendar-check</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>{{ $t('menu.finishedGames') }}</v-list-item-title>  
+            </v-list-item>
+          </v-flex>
+          
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
   </nav>
@@ -76,13 +92,13 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       dOpenDrawer: false
     }
   },
   methods: {
-    fLogout () {
+    fLogout() {
       localStorage.setItem(Constants.IS_LOGGED, false)
       localStorage.removeItem(Constants.PLAYER_INFO)
       this.$router.push('/home')
@@ -90,13 +106,12 @@ export default {
     }
   },
   computed: {
-    cIsLogged () {
-      return localStorage.getItem(Constants.IS_LOGGED) === true ||  localStorage.getItem(Constants.IS_LOGGED) === 'true'
+    cIsLogged() {
+      return localStorage.getItem(Constants.IS_LOGGED) === true || localStorage.getItem(Constants.IS_LOGGED) === 'true'
     },
     cPlayerInfo() {
       return JSON.parse(localStorage.getItem(Constants.PLAYER_INFO))
     }
   }
 }
-
 </script>

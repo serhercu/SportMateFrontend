@@ -1,9 +1,13 @@
 import { format } from 'date-fns';
 
-const mxDate = {
-	mxFormatDate(date) {
-		return format(date, 'dd/MM/yyyy')
+export const mxDate = {
+	methods: {
+		mxFormatDate(date) {
+			return format(date, 'dd/MM/yyyy')
+		},
+		mxFormatHour(time) {
+			const parts = time.split(":");
+			return parts[0] + ":" + parts[1];
+		}
 	}
 }
-  
-export default mxDate

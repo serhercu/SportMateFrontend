@@ -42,13 +42,23 @@ const messagesi18 = {
       join: 'Unirme',
       leave: 'Abandonar partido',
       cancel: 'Cancelar partido',
-      gameCanceled: 'Partido cancelado'
+      gameCanceled: 'Partido cancelado',
+      gameFinished: 'Partido finalizado'
+    },
+    gamesFinished: {
+      gamesFinished: 'Partidos finalizados',
+      notFound: 'No tienes ningún partido finalizado'
+    },
+    listGame: {
+      resultNotFound: 'No se han encontrado resultados'
     },
     menu: {
       notLogged: '¿Tienes cuenta?',
       login: 'Inicia sesión',
       register: 'Regístrate',
-      signout: 'Cerrar sesión'
+      signout: 'Cerrar sesión',
+      myGames: 'Mis partidos',
+      finishedGames: 'Partidos finalizados'
     },
     sport: {
       Tennis: 'Tenis',

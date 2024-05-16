@@ -82,6 +82,19 @@ const srvGame = {
     }).catch((error) => {
       console.log(error)
     })
+  },
+  async finishedGames(playerId) {
+    let payload = {
+      params: {
+        playerId
+      }
+    }
+    return HTTP_APP.get('/game/finishedGames', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
   }
 }
 

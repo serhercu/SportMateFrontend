@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-4" color="#CFD8DC" flat>
+  <v-container mb-2>
     <v-container v-if="pGames !== null && pGames.length !== 0" v-bind="{ [`grid-list-${size}`]: true }" fluid>
       <v-flex >
         <v-layout v-for="game in pGames" :key="game" xs4 pa-2>
@@ -13,9 +13,9 @@
     </v-flex>
     <v-flex v-else-if="pGames.length === 0" class="text-center">
       <v-icon>mdi-alert-circle-outline</v-icon>
-      <span>No se han encontrado resultados</span>
+      <span>{{ pNotFoundMsg !== null ? pNotFoundMsg : $t('listGame.resultNotFound') }}</span>
     </v-flex>
-  </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -28,6 +28,11 @@ export default {
   props: {
     pGames: {
       type: Array,
+      required: false,
+      default: null
+    },
+    pNotFoundMsg: {
+      type: String,
       required: false,
       default: null
     }

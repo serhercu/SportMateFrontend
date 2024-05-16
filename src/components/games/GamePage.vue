@@ -9,12 +9,12 @@
 					<span>{{$t('sport.' + dGame.sport.name)}}</span>
 				</v-flex>
 				<v-flex>
-					<v-col>
+					<v-layout>
 						<v-icon>mdi-calendar</v-icon>
 						{{ cGameDate }}
 						<v-icon>mdi-clock-outline</v-icon>
-						{{ dGame.time }}
-					</v-col>
+						{{ cTimeParsed }}
+					</v-layout>
 				</v-flex>
 				<v-flex mb-1>
 					<v-icon>mdi-map-marker</v-icon>
@@ -26,7 +26,8 @@
 				</v-flex>
 			</v-flex>
 			<v-flex xs2 sm2 md2 lg2>
-				<v-btn v-if="cIsCanceled" disabled color="primary">{{ $t("gamePage.gameCanceled") }}</v-btn>
+				<v-btn v-if="cIsFinished" disabled color="primary">{{ $t("gamePage.gameFinished") }}</v-btn>
+				<v-btn v-else-if="cIsCanceled" disabled color="primary">{{ $t("gamePage.gameCanceled") }}</v-btn>
 				<DialogApp v-else-if="cIsUserCreator" @confirm="fCancelGame" :pTitle="$t('gamePage.cancel')" :pDescription="$t('dialog.cancelGameConfirmation')">
 					<template v-slot="{ openDialog, closeDialog }">
 						<v-btn @click="openDialog" color="primary">{{ $t("gamePage.cancel") }}</v-btn>
@@ -73,9 +74,10 @@ import Constants from '@/util/constants'
 import srvGame from '@/services/srv-game'
 
 import { format } from 'date-fns'
-import constants from '@/util/constants'
+import { mxDate } from '@/mixins/mxDate';
 
 export default {
+	mixins: [mxDate],
   components: {
 		PlayerCard,
 		DialogApp
@@ -105,14 +107,19 @@ export default {
 				(this.dGame.playersRequired + 1) + ')'
 		},
 		cBlockJoinButton() {
-			const playerJoined = this.dGame.players.find(gamePlayer => gamePlayer.id === 	this.dPlayer.id);
-			return playerJoined
+			return this.dGame.players.find(gamePlayer => gamePlayer.id === 	this.dPlayer.id)
 		},
 		cIsUserCreator() {
 			return this.dPlayer.id === this.dGame.playerCreatorId
 		},
 		cIsCanceled() {
 			return this.dGame.status === Constants.GAME_STATUS_CANCELED
+		},
+		cTimeParsed() {
+			return this.mxFormatHour(this.dGame.time)
+		},
+		cIsFinished() {
+			return new Date(this.dGame.date) < new Date()
 		}
 	},
 	methods: {
