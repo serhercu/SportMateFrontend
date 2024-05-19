@@ -40,6 +40,12 @@ const messagesi18 = {
       searchPlayer: 'Buscar jugador',
       playerNotFound: 'No se ha encontrado ningún jugador'
     },
+    playerDialog: {
+      addFriend: 'Añadir como amigo',
+      deleteRequest: 'Eliminar solicitud de amistad',
+      pendingRequest: 'Solicitud de amistad pendiente',
+      mutuals: '¡Ya sois amigos!'
+    },
     gamePage: {
       details: 'Más información',
       players: 'Jugadores',
