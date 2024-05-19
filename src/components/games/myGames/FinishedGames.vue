@@ -5,7 +5,7 @@
 		</v-flex>
 		
 		<v-divider></v-divider>
-			<ListGame :pGames="dGames" :pNotFoundMsg="$t('gamesFinished.notFound')"/>
+			<ListVertical :pType="'G'" :pItems="dGames" :pNotFoundMsg="$t('gamesFinished.notFound')"/>
 		<v-flex>
 			
 		</v-flex>
@@ -14,7 +14,7 @@
 
 <script>
 
-import ListGame from '@/components/games/ListGame'
+import ListVertical from '@/components/util/ListVertical'
 
 import Constants from '@/util/constants'
 
@@ -22,7 +22,7 @@ import srvGame from '@/services/srv-game'
 
 export default {
 	components: {
-    ListGame
+    ListVertical
   },
   data() {
     return {

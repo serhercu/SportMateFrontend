@@ -6,7 +6,7 @@
       </v-flex>
 
       <v-flex xs8 ma-1>
-        <ListGame :pGames="dSearchGames"/>
+        <ListVertical :pType="'G'" :pItems="dSearchGames"/>
       </v-flex>
     </v-layout>
   </v-container>
@@ -14,14 +14,14 @@
 
 <script>
 import FiltersGame from '@/components/games/FiltersGame'
-import ListGame from '@/components/games/ListGame'
+import ListVertical from '@/components/util/ListVertical'
 
 import srvGame from '@/services/srv-game'
 
 export default {
   components: {
     FiltersGame,
-    ListGame
+    ListVertical
   },
   data() {
     return {

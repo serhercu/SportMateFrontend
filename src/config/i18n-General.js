@@ -36,6 +36,10 @@ const messagesi18 = {
       searchGame: 'Buscar partido',
       searchQuestionFilters: '¿Qué partido buscas?'
     },
+    searchPlayer: {
+      searchPlayer: 'Buscar jugador',
+      playerNotFound: 'No se ha encontrado ningún jugador'
+    },
     gamePage: {
       details: 'Más información',
       players: 'Jugadores',
@@ -49,7 +53,8 @@ const messagesi18 = {
       gamesFinished: 'Partidos finalizados',
       notFound: 'No tienes ningún partido finalizado'
     },
-    listGame: {
+    listVertical: {
+      searchNow: 'Haz tu primera búsqueda',
       resultNotFound: 'No se han encontrado resultados'
     },
     menu: {
@@ -58,7 +63,8 @@ const messagesi18 = {
       register: 'Regístrate',
       signout: 'Cerrar sesión',
       myGames: 'Mis partidos',
-      finishedGames: 'Partidos finalizados'
+      finishedGames: 'Partidos finalizados',
+      searchPlayer: 'Buscar jugador'
     },
     sport: {
       Tennis: 'Tenis',

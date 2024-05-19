@@ -10,6 +10,7 @@ import Login from '@/components/authentication/Login'
 import SearchGame from '@/components/games/SearchGame'
 import GamePage from '@/components/games/GamePage'
 import FinishedGames from '@/components/games/myGames/FinishedGames'
+import SearchPlayer from '@/components/player/SearchPlayer'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     path: '/searchGame',
     name: 'SearchGame',
     component: SearchGame
+  },
+  {
+    path: '/searchPlayer',
+    name: 'SearchPlayer',
+    component: SearchPlayer
   },
   {
     path: '/game/:idGame',
