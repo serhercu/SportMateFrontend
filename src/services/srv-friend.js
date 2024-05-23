@@ -2,10 +2,10 @@ import HTTP_APP from '@/config/axios-conf-app'
 
 const srvFriend = {
 
-  async friendRequest(playerId1, playerId2) {
+  async friendRequest(sender, receiver) {
     let payload = {
-      playerId1,
-      playerId2
+      sender,
+      receiver
     }
     return HTTP_APP.put('/friend/request', payload).then((response) => {
       return response.data

@@ -20,19 +20,19 @@
 								</template>
 								<span>{{$t('playerDialog.addFriend')}}</span>
 							</v-tooltip>
-							<v-tooltip v-else-if="dStatus === 'P'" left>
-								<template v-slot:activator="{ on }">
-									<v-icon v-on="on">mdi-account-cancel-outline</v-icon>
-								</template>
-								<span>{{$t('playerDialog.pendingRequest')}}</span>
-							</v-tooltip>
+							<v-flex v-else-if="dStatus === 'P'">
+								<v-tooltip left>
+									<template v-slot:activator="{ on }">
+										<v-icon v-on="on">mdi-account-question-outline</v-icon>
+									</template>
+									<span>{{$t('playerDialog.pendingRequest')}}</span>
+								</v-tooltip>
+							</v-flex>
 							<v-tooltip v-else-if="dStatus === 'A'" left>
 								<template v-slot:activator="{ on }">
 									<v-icon v-on="on" color="primary" outlined>mdi-account-check-outline</v-icon>
 								</template>
 								<span>{{$t('playerDialog.mutuals')}}</span>
-
-								
 							</v-tooltip>
 						</v-col>
         	</v-row>
@@ -40,7 +40,7 @@
 						<v-divider></v-divider>
 					</v-row>
 					<v-row>
-						<span>Deportes favoritos</span>
+						<span>{{$t('playerDialog.favouriteSports')}}</span>
 					</v-row>
 					<v-row>
 						<v-col cols="3" v-for="sport in pPlayer.sports" :key="sport" xs4 pa-2>
@@ -76,7 +76,6 @@ import srvFriend from '@/services/srv-friend'
 		},
 		data() {
 			return {
-				dDialog: false,
 				dPlayer: JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)),
 				dStatus: null
 			}
@@ -94,13 +93,13 @@ import srvFriend from '@/services/srv-friend'
 				this.$emit('update:pShow', false);
 			},
 			fFriendRequest() {
-				srvFriend.friendRequest(this.pPlayer.playerId, JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id).then((response) => {
-					this.dSearchGames = response
+				srvFriend.friendRequest(JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id, this.pPlayer.playerId).then((response) => {
+					this.dStatus = response.status
 				})
 			},
 			fGetStatus() {
 				if (!this.cIsSameUser) {
-					srvFriend.status(this.pPlayer.playerId, JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id).then((response) => {
+					srvFriend.status(JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id, this.pPlayer.playerId).then((response) => {
 						this.dStatus = response
 					})
 				}

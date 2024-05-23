@@ -44,7 +44,8 @@ const messagesi18 = {
       addFriend: 'Añadir como amigo',
       deleteRequest: 'Eliminar solicitud de amistad',
       pendingRequest: 'Solicitud de amistad pendiente',
-      mutuals: '¡Ya sois amigos!'
+      mutuals: '¡Ya sois amigos!',
+      favouriteSports: 'Deportes favoritos'
     },
     gamePage: {
       details: 'Más información',
