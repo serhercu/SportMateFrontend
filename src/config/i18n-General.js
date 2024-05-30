@@ -71,7 +71,16 @@ const messagesi18 = {
       signout: 'Cerrar sesión',
       myGames: 'Mis partidos',
       finishedGames: 'Partidos finalizados',
-      searchPlayer: 'Buscar jugador'
+      searchPlayer: 'Buscar jugador',
+      myFriends: 'Mis amigos'
+    },
+    friends: {
+      friends: 'Amigos',
+      noFriends: 'No tienes amigos',
+      pendingRequests: 'Solicitudes pendientes',
+      myFriends: 'Mis amigos',
+      acceptFriendRequest: 'Aceptar solicitud de amistad',
+      declineFriendRequest: 'Rechazar solicitud de amistad'
     },
     sport: {
       Tennis: 'Tenis',

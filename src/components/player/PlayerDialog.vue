@@ -12,7 +12,7 @@
 							<v-icon>mdi-at</v-icon>{{ pPlayer.username }}
 						</v-col>
 						<v-col v-if="!cIsSameUser" cols="auto" class="d-flex justify-end align-start">
-							<v-tooltip v-if="dStatus === ''" left>
+							<v-tooltip v-if="pPlayer.status === null" left>
 								<template v-slot:activator="{ on, attrs }">
 									<v-btn @click="fFriendRequest" color="amber" outlined v-bind="attrs" v-on="on">
 										<v-icon>mdi-account-plus-outline</v-icon>
@@ -20,7 +20,8 @@
 								</template>
 								<span>{{$t('playerDialog.addFriend')}}</span>
 							</v-tooltip>
-							<v-flex v-else-if="dStatus === 'P'">
+							<FriendRequestListButton v-else-if="pPlayer.status === 'P'" @replyFriendRequest="fReplyFriendRequest"></FriendRequestListButton>
+							<v-flex v-else-if="pPlayer.status === 'O'">
 								<v-tooltip left>
 									<template v-slot:activator="{ on }">
 										<v-icon v-on="on">mdi-account-question-outline</v-icon>
@@ -28,7 +29,7 @@
 									<span>{{$t('playerDialog.pendingRequest')}}</span>
 								</v-tooltip>
 							</v-flex>
-							<v-tooltip v-else-if="dStatus === 'A'" left>
+							<v-tooltip v-else-if="pPlayer.status === 'A'" left>
 								<template v-slot:activator="{ on }">
 									<v-icon v-on="on" color="primary" outlined>mdi-account-check-outline</v-icon>
 								</template>
@@ -55,6 +56,7 @@
 
 <script>
 import SportCard from '@/components/cards/SportCard'
+import FriendRequestListButton from '@/components/util/player/FriendRequestListButton'
 
 import Constants from '@/util/constants'
 
@@ -62,7 +64,8 @@ import srvFriend from '@/services/srv-friend'
 
   export default {
 		components: {
-			SportCard
+			SportCard,
+			FriendRequestListButton
 		},
 		props: {
 			pShow: {
@@ -76,12 +79,8 @@ import srvFriend from '@/services/srv-friend'
 		},
 		data() {
 			return {
-				dPlayer: JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)),
-				dStatus: null
+				dPlayer: JSON.parse(localStorage.getItem(Constants.PLAYER_INFO))
 			}
-		},
-		mounted() {
-			this.fGetStatus()
 		},
 		computed: {
 			cIsSameUser() {
@@ -94,15 +93,11 @@ import srvFriend from '@/services/srv-friend'
 			},
 			fFriendRequest() {
 				srvFriend.friendRequest(JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id, this.pPlayer.playerId).then((response) => {
-					this.dStatus = response.status
+					this.$emit('fUpdateStatus', response.status);
 				})
 			},
-			fGetStatus() {
-				if (!this.cIsSameUser) {
-					srvFriend.status(JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id, this.pPlayer.playerId).then((response) => {
-						this.dStatus = response
-					})
-				}
+			fReplyFriendRequest(status) {
+				this.$emit('fUpdateStatus', status)
 			}
   	}
   }

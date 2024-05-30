@@ -24,6 +24,45 @@ const srvFriend = {
       console.log(error)
       throw error
     })
+  },
+  async getFriendRequestByPlayer(playerId) {
+    let payload = {
+      params: {
+        playerId
+      }
+    }
+    return HTTP_APP.get('/friend/getFriendRequestByPlayer', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
+  },
+  async getFriendsByPlayer(playerId) {
+    let payload = {
+      params: {
+        playerId
+      }
+    }
+    return HTTP_APP.get('/friend/getFriendsByPlayer', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
+  },
+  async replyFriendRequest(sender, requesterReplier, status) {
+    let payload = {
+      sender,
+      requesterReplier,
+      status
+    }
+    return HTTP_APP.put('/friend/replyFriendRequest', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
   }
 }
 

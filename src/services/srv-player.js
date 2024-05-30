@@ -2,10 +2,11 @@ import HTTP_APP from '@/config/axios-conf-app'
 
 const srvPlayer = {
 
-  async searchPlayer(search) {
+  async searchPlayer(search, playerId) {
 		let payload = {
       params: {
-        search
+        search,
+        playerId
       }
     }
     return HTTP_APP.get('/player/search', payload).then((response) => {

@@ -11,6 +11,7 @@ import SearchGame from '@/components/games/SearchGame'
 import GamePage from '@/components/games/GamePage'
 import FinishedGames from '@/components/games/myGames/FinishedGames'
 import SearchPlayer from '@/components/player/SearchPlayer'
+import FriendsPage from '@/components/player/FriendsPage'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,11 @@ const routes = [
     path: '/myGames/gamesFinished',
     name: 'FinishedGames',
     component: FinishedGames
+  },
+  {
+    path: '/friends',
+    name: 'FriendsPage',
+    component: FriendsPage
   }
 ]
 

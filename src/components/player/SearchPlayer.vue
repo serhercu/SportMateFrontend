@@ -13,6 +13,8 @@ import ListVertical from '@/components/util/ListVertical'
 
 import srvPlayer from '@/services/srv-player'
 
+import Constants from '@/util/constants'
+
 export default {
 	components: {
     ListVertical
@@ -27,7 +29,7 @@ export default {
   },
   methods: {
 		fSearchUser(search) {
-			srvPlayer.searchPlayer(search).then((response) => {
+			srvPlayer.searchPlayer(search, JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id).then((response) => {
 				this.dSearchList = response
 			})
 		}
