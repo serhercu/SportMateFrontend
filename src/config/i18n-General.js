@@ -56,6 +56,11 @@ const messagesi18 = {
       gameCanceled: 'Partido cancelado',
       gameFinished: 'Partido finalizado'
     },
+    myGames: {
+      monthly: 'Mensual',
+      weekly: 'Semanal',
+      calendarMode: 'Mostrar el calendario'
+    },
     gamesFinished: {
       gamesFinished: 'Partidos finalizados',
       notFound: 'No tienes ningún partido finalizado'
@@ -72,7 +77,8 @@ const messagesi18 = {
       myGames: 'Mis partidos',
       finishedGames: 'Partidos finalizados',
       searchPlayer: 'Buscar jugador',
-      myFriends: 'Mis amigos'
+      myFriends: 'Mis amigos',
+      gameCalendar: 'Calendario de partidos'
     },
     friends: {
       friends: 'Amigos',

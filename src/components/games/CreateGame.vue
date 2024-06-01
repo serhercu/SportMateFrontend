@@ -225,7 +225,6 @@ import srvCity from '@/services/srv-city'
       },
       fCreateGame () {
         srvGame.createGame(this.dGame).then(() => {
-          console.log('created')
         })
       }
     }

@@ -95,6 +95,19 @@ const srvGame = {
       console.log(error)
       throw error
     })
+  },
+  async getGamesByPlayer(playerId) {
+    let payload = {
+      params: {
+        playerId
+      }
+    }
+    return HTTP_APP.get('/game/playerGames', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
   }
 }
 

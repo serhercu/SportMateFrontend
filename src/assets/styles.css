@@ -80,3 +80,17 @@
   font-size: 18px;
   color: var(--third-color);
 }
+
+.rounded-v-select {
+  border-radius: 16px; /* Adjust the radius as needed */
+  background-color: #f5f5f5; /* Very light grey background */
+  padding: 8px; /* Optional: Add padding for better appearance */
+}
+
+.rounded-v-select .v-input__control {
+  border-radius: 16px;
+}
+
+.rounded-v-select .v-list-item {
+  background-color: #f5f5f5;
+}

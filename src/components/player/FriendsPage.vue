@@ -39,8 +39,6 @@ export default {
 	},
   methods: {
 		fUpdateFriends() {
-			console.log('aqui 3')
-
 			this.fGetFriendRequests()
 			this.fGetFriends()
 		},

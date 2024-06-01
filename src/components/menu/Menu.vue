@@ -61,21 +61,13 @@
           <v-list-item-title>{{ $t('createGame.createGame') }}</v-list-item-title>
         </v-list-item>
 
-        <!-- My games -->
-        <v-list-group v-if="cIsLogged" prepend-icon="mdi-karate">
-          <template v-slot:activator>
-            <v-list-item-title>{{ $t('menu.myGames') }}</v-list-item-title>
-          </template>
-          <v-flex ml-2>
-            <!-- Finished games -->
-            <v-list-item link @click="$router.push('/myGames/gamesFinished')">
-              <v-list-item-icon>
-                <v-icon>mdi-calendar-check</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>{{ $t('menu.finishedGames') }}</v-list-item-title>  
-            </v-list-item>
-          </v-flex>
-        </v-list-group>
+        <!-- Calendar games -->
+        <v-list-item :disabled="!cIsLogged" link @click="$router.push('/myGames')">
+          <v-list-item-icon>
+            <v-icon>mdi-calendar</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ $t('menu.gameCalendar') }}</v-list-item-title>
+        </v-list-item>
 
         <!-- Search players -->
         <v-list-item :disabled="!cIsLogged" link @click="$router.push('/searchPlayer')">
