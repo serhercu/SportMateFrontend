@@ -13,6 +13,7 @@ import FinishedGames from '@/components/games/myGames/FinishedGames'
 import MyGames from '@/components/games/myGames/MyGames'
 import SearchPlayer from '@/components/player/SearchPlayer'
 import FriendsPage from '@/components/player/FriendsPage'
+import SearchCenter from '@/components/center/SearchCenter'
 
 Vue.use(VueRouter)
 
@@ -66,6 +67,11 @@ const routes = [
     path: '/myGames',
     name: 'MyGames',
     component: MyGames
+  },
+  {
+    path: '/searchCenter',
+    name: 'SearchCenter',
+    component: SearchCenter
   }
 ]
 

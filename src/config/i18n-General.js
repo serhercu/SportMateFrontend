@@ -9,7 +9,8 @@ const messagesi18 = {
       next: 'Siguiente',
       back: 'Atrás',
       home: 'Volver al menú principal',
-      confirm: 'Confirmar'
+      confirm: 'Confirmar',
+      search: 'Buscar'
     },
     createGame: {
       createGame: 'Crear partido',
@@ -65,6 +66,13 @@ const messagesi18 = {
     gamesFinished: {
       gamesFinished: 'Partidos finalizados',
       notFound: 'No tienes ningún partido finalizado'
+    },
+    searchCenter: {
+      searchCenter: 'Buscador de centros',
+      centerName: 'Nombre del centro',
+      sports: 'Deportes para practicar',
+      city: 'Ciudad',
+      results: 'Resultados'
     },
     listVertical: {
       searchNow: 'Haz tu primera búsqueda',
