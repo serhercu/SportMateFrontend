@@ -57,6 +57,7 @@ const messagesi18 = {
       gameFinished: 'Partido finalizado'
     },
     myGames: {
+      gamesCalendar: 'Calendario de partidos',
       monthly: 'Mensual',
       weekly: 'Semanal',
       calendarMode: 'Mostrar el calendario'

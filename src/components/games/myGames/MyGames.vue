@@ -2,7 +2,7 @@
   <v-container fluid fill-height>
 		<v-row>
 			<v-col>
-				<h1 style="text-align: center;">{{ $t('gamesFinished.gamesFinished') }}</h1>
+				<h1 style="text-align: center;">{{ $t('myGames.gamesCalendar') }}</h1>
 			</v-col>
 		</v-row>
 		<v-row class="mb-2">
