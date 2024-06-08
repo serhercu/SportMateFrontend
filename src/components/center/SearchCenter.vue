@@ -26,7 +26,7 @@
 						<v-row>
 							<v-select v-model="dSportsSelected" :items="dSports" attach chips label="cambiar" multiple
 							outlined class="rounded-text-field custom-width" background-color="white" prepend-icon="mdi-basketball"
-							:label="$t('searchCenter.sports')" :item-text="fGetSportName" return-object>
+							:label="$t('searchCenter.sports')" :item-text="fGetSportName" item-value="id">
 						</v-select>
 						</v-row>
 						<v-row justify="center">
@@ -40,12 +40,13 @@
 </template>
 <script>
 	import GamePlayerCommon from '@/common/GamePlayerCommon'
+	import srvCenter from '@/services/srv-center'
 
 	export default {
 		extends: GamePlayerCommon,
 		data() {
 			return {
-				dSearch: '',
+				dSearch: null,
 				dCities: [],
 				dCity: null,
 				dSports: [],
@@ -65,7 +66,9 @@
 				this.dSports = await this.fGetAllSports()
 			},
 			fSearchCenter() {
-				console.log()
+				srvCenter.searchCenters(this.dSearch, this.dCity, this.dSportsSelected).then((res) => {
+					console.log(res)
+				})
 			},
 		},
 		watch: {

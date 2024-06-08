@@ -102,7 +102,8 @@ const messagesi18 = {
       Basketball: 'Baloncesto',
       Volley: 'Volley',
       Football: 'Fútbol',
-      Padel: 'Pádel'
+      Padel: 'Pádel',
+      Swimming: 'Natación'
     },
     level: {
       veryLow: 'Muy bajo',
