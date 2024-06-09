@@ -14,7 +14,7 @@ const srvGame = {
       throw error
     })
   },
-  createGame(gameToCreate) {
+  async createGame(gameToCreate) {
     let payload = {
       description: gameToCreate.description,
       playersRequired: gameToCreate.players,
@@ -25,7 +25,8 @@ const srvGame = {
       sport: gameToCreate.sport,
       city: gameToCreate.city,
       time: gameToCreate.time,
-      playerCreatorId: gameToCreate.playerCreator
+      playerCreatorId: gameToCreate.playerCreator,
+      center: gameToCreate.center
     }
     return HTTP_APP.post('/game/createGame', payload).then((response) => {
       return response.data

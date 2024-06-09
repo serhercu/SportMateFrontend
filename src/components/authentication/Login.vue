@@ -20,9 +20,9 @@
             <v-flex v-if="dAuthErrorMsg" mt-2 class="red-box">
               <span>{{dAuthErrorMsg}}</span>
             </v-flex>
-						<v-flex mt-2>
-							<v-btn color="primary" @click="fLogin">{{ $t('register.login') }}</v-btn>
-						</v-flex>
+            <v-layout justify-end class="mt-4">
+							<v-btn color="amber" class="white--text" @click="fLogin">{{ $t('register.login') }}</v-btn>
+            </v-layout>
           </v-card-text>
         </v-card>
       </v-flex>

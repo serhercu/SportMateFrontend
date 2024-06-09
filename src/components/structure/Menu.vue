@@ -1,23 +1,23 @@
 <template>
   <nav>
-    <v-app-bar app>
-      <v-app-bar-nav-icon class="grey--text" @click="dOpenDrawer = !dOpenDrawer"></v-app-bar-nav-icon>
-      <v-toolbar-title class="text-uppercase grey--text" @click="$router.push('/home')">
+    <v-app-bar app color="blue-grey darken-1">
+      <v-app-bar-nav-icon class="white--text" @click="dOpenDrawer = !dOpenDrawer"></v-app-bar-nav-icon>
+      <v-toolbar-title class="text-uppercase white--text" @click="$router.push('/home')">
         <span class="font-weight-light">SPORT</span>
         <span>MATE</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="pIsLogged" @click="fLogout" text color="grey">
+      <v-btn v-if="pIsLogged" @click="fLogout" text color="white">
         <span>{{ $t('menu.signout') }}</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
-      <v-btn v-else text @click="$router.push('/login')" color="grey">
+      <v-btn v-else text @click="$router.push('/login')" color="white">
         <span>{{ $t('register.login') }}</span>
         <v-icon right>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="dOpenDrawer" absolute temporary fixed class="amber">
+    <v-navigation-drawer v-model="dOpenDrawer" absolute temporary fixed class="blue-grey lighten-3">
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>

@@ -35,7 +35,7 @@
 				</v-carousel-item>
 			</v-carousel>
 		</v-row>
-		<v-col>
+		<v-col v-if="dCenter.players.length > 0" >
 			<v-col style="text-align: center;" class="mb-2">
 				<span class="subtitle-upper">{{ $t('centerPage.players') }}</span>
 			</v-col>

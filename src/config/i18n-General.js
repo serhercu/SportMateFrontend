@@ -20,6 +20,7 @@ const messagesi18 = {
       selectSport: 'Selecciona un deporte',
       dateAndLocation: 'Fecha y lugar',
       selectDate: 'Selecciona una fecha',
+      selectHour: 'Selecciona una hora',
       selectDateRange: 'Selecciona una fecha o un rango',
       selectLocation: 'Elige un lugar',
       selectNumberPlayers: '¿Cuántos jugadores necesitas?',
@@ -32,7 +33,8 @@ const messagesi18 = {
       addComment: 'Añade algún comentario sobre tu partida',
       addProvince: 'Selecciona una provincia',
       addCity: 'Selecciona una ciudad',
-      addLocation: 'Indica una dirección'
+      addLocation: 'Indica una dirección',
+      addCenter: 'Selecciona un centro'
     },
     searchGame: {
       search: 'Buscar',
@@ -139,7 +141,8 @@ const messagesi18 = {
       thanks: 'Gracias por registrarte. Tu cuenta ha sido creada.',
       birthday: 'Fecha de nacimiento',
       login: 'Login',
-      loginStart: 'Iniciar sesión'
+      loginStart: 'Iniciar sesión',
+      done: '¡Listo!'
     },
     label: {
       email: 'Email',

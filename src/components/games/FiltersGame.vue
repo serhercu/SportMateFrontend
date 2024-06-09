@@ -1,5 +1,5 @@
 <template>
-		<v-card class="pa-4" color="amber" >
+		<v-card class="pa-4" color="blue-grey lighten-4" >
 			<v-card-title>
 				{{ $t('searchGame.searchQuestionFilters') }}
 			</v-card-title>
@@ -56,7 +56,9 @@
 				</v-flex>
 			</v-layout>
 			
-			<v-btn @click="fApplyFilters">{{ $t("searchGame.search") }}</v-btn>
+			<v-layout justify-end>
+				<v-btn @click="fApplyFilters" color="amber" class="white--text">{{ $t('searchGame.search') }}</v-btn>
+			</v-layout>
 		</v-card>
 </template>
 

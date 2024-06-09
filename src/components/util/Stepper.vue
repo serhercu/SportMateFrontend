@@ -56,7 +56,7 @@
   }
   
   .block.active {
-    background-color: #007bff;
+    background-color: #FFC107;
   }
   </style>
   

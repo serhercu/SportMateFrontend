@@ -4,7 +4,7 @@
 			<v-img :src="'http://localhost:8082' + pCenter.images.profile"></v-img>
 			<v-card-title>{{ pCenter.name }}</v-card-title>
 			<v-card-subtitle>{{ pCenter.description }}</v-card-subtitle>
-			<v-card-text>
+			<v-card-text v-if="pShowDetails">
 				<v-row justify="center">
 					<v-col v-for="sport in pCenter.sports" :key="sport.id">
 						<v-tooltip bottom>
@@ -16,7 +16,7 @@
 					</v-col>
 				</v-row>
 			</v-card-text>
-			<v-card-actions>
+			<v-card-actions v-if="pShowDetails">
 				<v-btn @click="fOpenCenter" color="orange lighten-2" text>{{ $t('btn.moreInfo')}}</v-btn>
 			</v-card-actions>
 		</v-card>
@@ -32,6 +32,11 @@
 			pCenter: {
 				type: Object,
 				required: true
+			},
+			pShowDetails: {
+				type: Boolean,
+				required: false,
+				default: true
 			}
 		},
 		methods: {

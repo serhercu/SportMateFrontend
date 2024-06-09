@@ -4,7 +4,7 @@
 			<h1 style="text-align: center;">{{ $t('searchCenter.searchCenter') }}</h1>
 		</v-col>
 		<v-col>
-			<v-card color="amber">
+			<v-card color="blue-grey lighten-4">
 				<v-container>
 					<v-col>
 						<v-row class="my-2">
@@ -30,7 +30,7 @@
 							</v-select>
 						</v-row>
 						<v-row justify="center">
-							<v-btn color="primary" @click="fSearchCenter">{{$t("btn.search")}}</v-btn>
+							<v-btn color="amber" class="white--text" @click="fSearchCenter">{{$t("btn.search")}}</v-btn>
 						</v-row>
 					</v-col>
 				</v-container>

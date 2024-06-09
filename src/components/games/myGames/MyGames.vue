@@ -16,7 +16,7 @@
 			</v-col>
 			<v-col>
 				<v-sheet height="600">
-					<v-select v-model="type" :items="dTypes" item-value="type" :label="$t('myGames.calendarMode')" dense rounded hide-details>
+					<v-select v-model="dType" :items="dTypes" item-value="type" :label="$t('myGames.calendarMode')" dense rounded hide-details>
 						<template v-slot:item="{ item }">
 							<span>{{ $t('myGames.' + item.text) }}</span>
 						</template>
@@ -27,7 +27,7 @@
 					<v-col v-if="$refs.calendar" style="text-align: center;">
 						<span class="subtitle-upper">{{ $refs.calendar.title }}</span>
 					</v-col>
-					<v-calendar ref="calendar" v-model="dCalendarValue" :weekdays="weekday" :type="type" :events="dEvents"
+					<v-calendar ref="calendar" v-model="dCalendarValue" :weekdays="dWeekday" :type="dType" :events="dEvents"
 						@click:event="fViewEvent" locale="es-es"></v-calendar>
 				</v-sheet>
 			</v-col>
@@ -48,13 +48,9 @@
   export default {
     data () {
       return {
-				type: 'month',
-				types: ['month', 'week'],
-				weekday: [1, 2, 3, 4, 5, 6, 0],
+				dType: 'month',
+				dWeekday: [1, 2, 3, 4, 5, 6, 0],
 				dCalendarValue: '',
-				events: [],
-				colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-				names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
 				dGames: [],
 				dEvents: [],
 				dTypes: [
@@ -99,8 +95,8 @@
 			},
 			fGetDate(date, time) {
 				let datePart = date.split('T')[0]
-				let combinedStr = `${datePart}T${time}.000+00:00`
-				return new Date(combinedStr);
+				let combinedStr = `${datePart}T${time}.000+02:00`
+				return new Date(combinedStr)
 			},
 			fViewEvent(event) {
 				this.$router.push('/game/' + event.event.gameId)

@@ -7,10 +7,13 @@
           
           <v-stepper-items>
             <v-flex ma-4>
-              <span class="titleStepperContent">{{$t('register.step') + ' ' + dStep + ': ' + dListTitles[dStep - 1] }}</span>
+              <span v-if="dStep === 4" class="titleStepperContent">{{$t('register.done') }}</span>
+              <span v-else class="titleStepperContent">{{$t('register.step') + ' ' + dStep + ': ' + dListTitles[dStep - 1] }}</span>
             </v-flex>
             <v-stepper-content step="1">
-                <p v-if="dAuthErrorMsg" class="red-box"/>{{dAuthErrorMsg}}
+                <v-card v-if="dAuthErrorMsg" color="red lighten-1" class="red-border" outlined>
+                  <span class="ma-4 white--text">{{dAuthErrorMsg}}</span>
+                </v-card>
                 <v-text-field v-model="dEmail" :label="$t('label.email')" :data-vv-as="$t('label.email')" data-vv-validate-on='blur|change|input'
                     v-validate="'max:50|required|email'" name="email" :color="errors.has('email') || dIsEmailTaken ? 'datValidationErrorLabel':'datSecondary'" :class="errors.has('email') || dIsEmailTaken ? 'datValidationErrorLabel':''"
                     required prepend-icon="mdi-email" hide-details></v-text-field>
@@ -64,10 +67,10 @@
                   <v-col cols="6">
                     <v-menu ref="menu" v-model="dMenuDate" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
                       <template v-slot:activator="{ on, attrs }">
-                        <v-text-field v-model="dBirthday" :label="$t('register.birthday')" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
+                        <v-text-field v-model="dBirthday" :label="$t('register.birthday')" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on" color="amber"></v-text-field>
                       </template>
                       <v-date-picker v-model="dBirthday" :active-picker.sync="dActivePicker" min="1940-01-01" @change="fSaveDatepickerMenu"
-                        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)">
+                        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)" color="amber">
                       </v-date-picker>
                     </v-menu>
                   </v-col>
@@ -81,28 +84,40 @@
                   <v-col cols="12" sm="6">
                     <v-select
                         v-model="dSelectedSport" :items="dSports" :label="$t('createGame.selectSport')"
-                        item-text="name" item-value="id" required
-                    ></v-select>
+                        item-value="id" return-object required>
+                      <template v-slot:item="{ item }">
+                        <span>{{ $t('sport.' + item.name) }}</span>
+                      </template>
+                      <template v-slot:selection="{ item }">
+                        <span>{{ $t('sport.' + item.name) }}</span>
+                      </template>
+                    </v-select>
                   </v-col>
                   <v-col cols="12" sm="6">
                     <v-select
-                      v-model="dSelectedSkillLevel" :items="dLevels" :label="$t('label.selectLevel')"
-                      item-text="description" required
-                    ></v-select>
+                        v-model="dSelectedSkillLevel" :items="dLevels" :label="$t('label.selectLevel')"
+                        item-text="description" return-object required>
+                      <template v-slot:item="{ item }">
+                        <span>{{ $t('level.' + item.description) }}</span>
+                      </template>
+                      <template v-slot:selection="{ item }">
+                        <span>{{ $t('level.' + item.description) }}</span>
+                      </template>
+                    </v-select>
                   </v-col>
                 </v-row>
                 <v-row>
                   <v-col cols="12">
-                    <v-btn @click="addSelectedSport" >
+                    <v-btn @click="fAddSelectedSport" >
                       {{$t('register.addSport')}}
                     </v-btn>
                   </v-col>
                 </v-row>
-                <v-row>
-                  <v-col v-for="(sport, index) in dSelectedSportList" :key="index" cols="12" sm="6" md="4">
-                    <v-card>
-                      <v-card-title>{{ sport.name }}</v-card-title>
-                      <v-card-subtitle>{{ sport.skillLevel }}</v-card-subtitle>
+                <v-row class="mb-4">
+                  <v-col v-for="(sportSelected, index) in dSelectedSportList" :key="index" cols="12" sm="6" md="4">
+                    <v-card color="blue-grey lighten-4">
+                      <v-card-title>{{ $t('sport.' + sportSelected.sport.name) }}</v-card-title>
+                      <v-card-subtitle>{{ $t('level.' + sportSelected.level.description) }}</v-card-subtitle>
                     </v-card>
                   </v-col>
                 </v-row>
@@ -111,15 +126,21 @@
             </v-stepper-content>
             
             <v-stepper-content step="4">
-              <p v-if="dStep >= 4" >{{$t('register.thanks')}}</p>
+              <v-row class="ma-4" justify="center" align="center">
+                <v-icon x-large color="green">mdi-check-circle-outline</v-icon>
+                <span>{{$t('register.thanks')}}</span>
+              </v-row>
+              <v-row class="ma-4" justify="center" align="center">
+                <v-btn color="amber" class="white--text" @click="$router.push('/login')">{{$t("register.loginStart")}}</v-btn>
+              </v-row>
             </v-stepper-content>
 
             <v-layout>
               <v-flex v-if="dStep <= 3 && dStep > 1" class="button-wrapper-left">
-                <v-btn @click="fNextStep(false)">{{$t('btn.back')}}</v-btn>
+                <v-btn @click="fNextStep(false)" color="amber" class="white--text">{{$t('btn.back')}}</v-btn>
               </v-flex>
               <v-flex v-if="dStep < 4" class="button-wrapper">
-                <v-btn :disabled="cFieldsValid" @click="fNextStep(true)">{{$t('btn.next')}}</v-btn>
+                <v-btn :disabled="cFieldsValid" @click="fNextStep(true)" color="amber" class="white--text">{{$t('btn.next')}}</v-btn>
               </v-flex>
             </v-layout>
 
@@ -236,10 +257,10 @@ export default {
       this.dBirthdayMenu = false;
       this.dBirthdayFormatted = this.$refs.dBirthdayMenu.internalValue;
     },
-    addSelectedSport() {
+    fAddSelectedSport() {
       if (this.dSelectedSport && this.dSelectedSkillLevel) {
         this.dSelectedSportList.push({
-          idSport: this.dSelectedSport,
+          sport: this.dSelectedSport,
           level: this.dSelectedSkillLevel
         })
         this.dSelectedSport = null;
@@ -300,5 +321,7 @@ export default {
   .ageTextFont {
     font-size: 30px;
   }
-
+  .red-border {
+    border: 1px solid red;
+  }
 </style>
