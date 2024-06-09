@@ -2,12 +2,12 @@
 	<v-container ma-2>
 		<v-row class="mb-1">
 			<v-tooltip top>
-			<template v-slot:activator="{ on, attrs }">
-				<v-btn @click="fAcceptFriendRequest" color="green" outlined v-bind="attrs" v-on="on">
-					<v-icon>mdi-account-check-outline</v-icon>
-				</v-btn>
-			</template>
-			<span>{{$t('friends.acceptFriendRequest')}}</span>
+				<template v-slot:activator="{ on, attrs }">
+					<v-btn @click="fAcceptFriendRequest" color="green" outlined v-bind="attrs" v-on="on">
+						<v-icon>mdi-account-check-outline</v-icon>
+					</v-btn>
+				</template>
+				<span>{{$t('friends.acceptFriendRequest')}}</span>
 			</v-tooltip>
 		</v-row>
 		<v-row>

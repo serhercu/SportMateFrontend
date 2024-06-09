@@ -10,7 +10,8 @@ const messagesi18 = {
       back: 'Atrás',
       home: 'Volver al menú principal',
       confirm: 'Confirmar',
-      search: 'Buscar'
+      search: 'Buscar',
+      moreInfo: 'Más información'
     },
     createGame: {
       createGame: 'Crear partido',

@@ -3,11 +3,12 @@ import HTTP_APP from '@/config/axios-conf-app'
 const srvCenter = {
 
   async searchCenters(name, city, sports) {
+		const parsedSports = sports !== null ? sports : []
 		let payload = {
       params: {
         centerName: name,
 				cityId: city,
-				listSports: sports.join(',')
+				listSports: parsedSports.join(',')
       }
     }
     return HTTP_APP.get('/center/centers', payload).then((response) => {

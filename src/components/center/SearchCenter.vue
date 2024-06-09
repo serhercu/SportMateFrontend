@@ -10,24 +10,24 @@
 						<v-row class="my-2">
 							<v-text-field v-model="dSearch" prepend-icon="mdi-magnify" outlined  hide-details="auto" 
 							:label="$t('searchCenter.centerName')" class="rounded-text-field custom-width" background-color="white">
-						</v-text-field>
-					</v-row>
-					<v-row>
-						<v-select v-model="dCity" :items="dCities" prepend-icon="mdi-city" outlined class="rounded-text-field custom-width" 
-							background-color="white" :label="$t('searchCenter.city')" return-object>
-							<template v-slot:item="{ item }">
-								<span>{{ item.name }}</span>
-							</template>
-							<template v-slot:selection="{ item }">
-								<span>{{ item.name }}</span>
-							</template>
-						</v-select>
-					</v-row>
+							</v-text-field>
+						</v-row>
+						<v-row>
+							<v-select v-model="dCity" :items="dCities" prepend-icon="mdi-city" outlined class="rounded-text-field custom-width" 
+								background-color="white" :label="$t('searchCenter.city')" item-value="id">
+								<template v-slot:item="{ item }">
+									<span>{{ item.name }}</span>
+								</template>
+								<template v-slot:selection="{ item }">
+									<span>{{ item.name }}</span>
+								</template>
+							</v-select>
+						</v-row>
 						<v-row>
 							<v-select v-model="dSportsSelected" :items="dSports" attach chips label="cambiar" multiple
-							outlined class="rounded-text-field custom-width" background-color="white" prepend-icon="mdi-basketball"
-							:label="$t('searchCenter.sports')" :item-text="fGetSportName" item-value="id">
-						</v-select>
+								outlined class="rounded-text-field custom-width" background-color="white" prepend-icon="mdi-basketball"
+								:label="$t('searchCenter.sports')" :item-text="fGetSportName" item-value="id">
+							</v-select>
 						</v-row>
 						<v-row justify="center">
 							<v-btn color="primary" @click="fSearchCenter">{{$t("btn.search")}}</v-btn>
@@ -36,14 +36,29 @@
 				</v-container>
 			</v-card>
 		</v-col>
+		<v-col>
+			<v-container fluid>
+				<v-row justify="center">
+					<v-col cols="4" v-for="center in dCenters" :key="center.id" class="d-flex justify-center align-center">
+						<CenterCard :pCenter="center"></CenterCard>
+					</v-col>
+				</v-row>
+			</v-container>
+		</v-col>
 	</v-container>
 </template>
+
 <script>
 	import GamePlayerCommon from '@/common/GamePlayerCommon'
+	import CenterCard from '@/components/cards/CenterCard'
+
 	import srvCenter from '@/services/srv-center'
 
 	export default {
 		extends: GamePlayerCommon,
+		components: {
+			CenterCard
+		},
 		data() {
 			return {
 				dSearch: null,
@@ -51,7 +66,7 @@
 				dCity: null,
 				dSports: [],
 				dSportsSelected: [],
-				items: ['foo', 'bar', 'fizz', 'buzz'],
+				dCenters: []
 			}
 		},
 		mounted() {
@@ -66,8 +81,9 @@
 				this.dSports = await this.fGetAllSports()
 			},
 			fSearchCenter() {
-				srvCenter.searchCenters(this.dSearch, this.dCity, this.dSportsSelected).then((res) => {
-					console.log(res)
+				const sports = this.dSportsSelected.length > 0 && this.dSportsSelected !== null ? this.dSportsSelected : null
+				srvCenter.searchCenters(this.dSearch, this.dCity, sports).then((res) => {
+					this.dCenters = res
 				})
 			},
 		},
