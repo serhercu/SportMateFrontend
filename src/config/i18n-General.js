@@ -113,6 +113,13 @@ const messagesi18 = {
       high: 'Alto',
       veryHigh: 'Muy alto'
     },
+    footer: {
+      home: 'Home',
+      aboutUs: 'Sobre nosotros',
+      team: 'Equipo',
+      services: 'Servicios',
+      contactUs: 'Contacto'
+    },
     register: {
       step: 'Paso',
       userEmail: 'Usuario y email',

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid mb-10>
 		<v-row>
 			<v-col>
 				<h1 style="text-align: center;">{{ $t('myGames.gamesCalendar') }}</h1>
