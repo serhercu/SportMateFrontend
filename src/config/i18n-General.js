@@ -11,7 +11,8 @@ const messagesi18 = {
       home: 'Volver al menú principal',
       confirm: 'Confirmar',
       search: 'Buscar',
-      moreInfo: 'Más información'
+      moreInfo: 'Más información',
+      follow: 'Seguir'
     },
     createGame: {
       createGame: 'Crear partido',
@@ -76,7 +77,10 @@ const messagesi18 = {
       results: 'Resultados'
     },
     centerPage: {
-      sports: 'Deportes disponibles'
+      sports: 'Deportes disponibles',
+      players: 'Jugadores que siguen a este centro',
+      following: '¡Siguiendo!',
+      unfollowCenter: 'Dejar de seguir'
     },
     listVertical: {
       searchNow: 'Haz tu primera búsqueda',
@@ -148,7 +152,8 @@ const messagesi18 = {
     },
     dialog: {
       leaveGameConfirmation: '¿Seguro que quieres abandonar el partido?',
-      cancelGameConfirmation: '¿Seguro que quieres cancelar el partido?'
+      cancelGameConfirmation: '¿Seguro que quieres cancelar el partido?',
+      unfollowCenterConfirm: '¿Seguro que quieres dejar de seguir a este centro?'
     },
     errors: {
       userAlreadyExists: 'El nombre de usuario ya está en uso',

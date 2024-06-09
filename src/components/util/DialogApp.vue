@@ -4,7 +4,9 @@
       <slot :openDialog="fOpenDialog" :closeDialog="fCloseDialog" v-on="on"></slot>
     </template>
 		<v-card>
-			<v-toolbar>{{ pTitle }}</v-toolbar>
+			<v-toolbar>
+        <v-toolbar-title class="subtitle-upper">{{ pTitle }}</v-toolbar-title>
+      </v-toolbar>
 
 			<v-card-text class="pa-12">
 				{{ pDescription }}
@@ -46,6 +48,6 @@
 				this.fCloseDialog()
 				this.$emit('confirm')
 			}
-  }
+		}
   }
 </script>

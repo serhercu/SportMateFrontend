@@ -1,9 +1,19 @@
 <template>
 	<v-container fluid>
 		<Carousel :pImages="dCenter.images.banner"></Carousel>
-		<v-col>
-			<h1 style="text-align: center;">{{ dCenter.name }}</h1>
-		</v-col>
+		<v-row justify="center" align="center" class="mt-1">
+			<v-col class="text-center" cols="auto">
+				<h1>{{ dCenter.name }}</h1>
+			</v-col>
+			<v-col class="text-center" cols="auto">
+				<v-btn v-if="!cIsPlayerFollowing" @click="fFollow" color="primary">{{ $t('btn.follow') }}</v-btn>
+				<DialogApp v-else @confirm="fUnfollow" :pTitle="$t('centerPage.unfollowCenter')" :pDescription="$t('dialog.unfollowCenterConfirm')">
+					<template v-slot="{ openDialog, closeDialog }">
+						<v-btn outlined @click="openDialog" color="green">{{ $t("centerPage.following") }}</v-btn>
+					</template>
+				</DialogApp>
+			</v-col>
+		</v-row>
 		<v-row justify="center">
 			<span style="display: block; width: 50%; margin: 0 auto; text-align: center;">{{ dCenter.description }}</span>
 		</v-row>
@@ -25,6 +35,16 @@
 				</v-carousel-item>
 			</v-carousel>
 		</v-row>
+		<v-col>
+			<v-col style="text-align: center;" class="mb-2">
+				<span class="subtitle-upper">{{ $t('centerPage.players') }}</span>
+			</v-col>
+			<v-row row wrap>
+				<v-col v-for="gamePlayer in dCenter.players" cols="3" v-bind:key="dCenter.players.id" ma-2 xs3 sm3 md3 lg3>
+					<PlayerCard :pPlayer="gamePlayer"></PlayerCard>
+				</v-col>
+			</v-row>
+		</v-col>
 	</v-container>
 </template>
 <script>
@@ -34,11 +54,15 @@
 
 	import Carousel from '@/components/util/Carousel'
 	import SportCard from '@/components/cards/SportCard'
+	import PlayerCard from '@/components/cards/PlayerCard'
+	import DialogApp from '@/components/util/DialogApp'
 
 	export default {
 		components: {
 			Carousel,
-			SportCard
+			SportCard,
+			PlayerCard,
+			DialogApp
 		},
 		props: {
 			pCenter: {
@@ -64,6 +88,9 @@
 					groups.push(this.dCenter.sports.slice(i, i + groupSize));
 				}
 				return groups;
+			},
+			cIsPlayerFollowing() {
+				return this.dCenter.players.some(player => player.id === this.dPlayer.id);
 			}
 		},
 		methods: {
@@ -75,6 +102,16 @@
 						this.dCenter = response
 					})
 				}
+			},
+			fFollow() {
+				srvCenter.followCenter(this.dPlayer.id, this.dCenter.id).then((res) => {
+					this.dCenter.players = res.players
+				})
+			},
+			fUnfollow() {
+				srvCenter.unfollowCenter(this.dPlayer.id, this.dCenter.id).then((res) => {
+					this.dCenter.players = res.players
+				})
 			}
 		}
 	}

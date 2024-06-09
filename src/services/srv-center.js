@@ -27,6 +27,30 @@ const srvCenter = {
       console.log(error)
       throw error
     })
+  },
+  async followCenter(playerId, centerId) {
+    let payload = {
+      playerId,
+      centerId
+    }
+    return HTTP_APP.post('/center/follow', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
+  },
+  async unfollowCenter(playerId, centerId) {
+    let payload = {
+      playerId,
+      centerId
+    }
+    return HTTP_APP.post('/center/unfollow', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
   }
 
 }

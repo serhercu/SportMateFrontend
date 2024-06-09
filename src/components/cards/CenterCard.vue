@@ -6,7 +6,7 @@
 			<v-card-subtitle>{{ pCenter.description }}</v-card-subtitle>
 			<v-card-text>
 				<v-row justify="center">
-					<v-col v-for="sport in pCenter.sports" :key="sport.id" cols="1">
+					<v-col v-for="sport in pCenter.sports" :key="sport.id">
 						<v-tooltip bottom>
 							<template v-slot:activator="{ on, attrs }">
 								<v-icon v-bind="attrs" v-on="on">{{ sport.image }}</v-icon>
