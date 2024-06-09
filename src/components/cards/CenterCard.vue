@@ -17,7 +17,7 @@
 				</v-row>
 			</v-card-text>
 			<v-card-actions>
-				<v-btn color="orange lighten-2" text>{{ $t('btn.moreInfo')}}</v-btn>
+				<v-btn @click="fOpenCenter" color="orange lighten-2" text>{{ $t('btn.moreInfo')}}</v-btn>
 			</v-card-actions>
 		</v-card>
 	</v-hover>
@@ -32,6 +32,11 @@
 			pCenter: {
 				type: Object,
 				required: true
+			}
+		},
+		methods: {
+			fOpenCenter() {
+				this.$router.push('/center/' + this.pCenter.id)
 			}
 		}
 	}

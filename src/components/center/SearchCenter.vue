@@ -9,12 +9,12 @@
 					<v-col>
 						<v-row class="my-2">
 							<v-text-field v-model="dSearch" prepend-icon="mdi-magnify" outlined  hide-details="auto" 
-							:label="$t('searchCenter.centerName')" class="rounded-text-field custom-width" background-color="white">
+							:label="$t('searchCenter.centerName')" class="rounded-text-field custom-width" background-color="white" clearable>
 							</v-text-field>
 						</v-row>
 						<v-row>
 							<v-select v-model="dCity" :items="dCities" prepend-icon="mdi-city" outlined class="rounded-text-field custom-width" 
-								background-color="white" :label="$t('searchCenter.city')" item-value="id">
+								background-color="white" :label="$t('searchCenter.city')" item-value="id" clearable>
 								<template v-slot:item="{ item }">
 									<span>{{ item.name }}</span>
 								</template>
@@ -26,7 +26,7 @@
 						<v-row>
 							<v-select v-model="dSportsSelected" :items="dSports" attach chips label="cambiar" multiple
 								outlined class="rounded-text-field custom-width" background-color="white" prepend-icon="mdi-basketball"
-								:label="$t('searchCenter.sports')" :item-text="fGetSportName" item-value="id">
+								:label="$t('searchCenter.sports')" :item-text="fGetSportName" item-value="id" clearable>
 							</v-select>
 						</v-row>
 						<v-row justify="center">

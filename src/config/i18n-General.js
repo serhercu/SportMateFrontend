@@ -75,6 +75,9 @@ const messagesi18 = {
       city: 'Ciudad',
       results: 'Resultados'
     },
+    centerPage: {
+      sports: 'Deportes disponibles'
+    },
     listVertical: {
       searchNow: 'Haz tu primera búsqueda',
       resultNotFound: 'No se han encontrado resultados'
@@ -88,7 +91,8 @@ const messagesi18 = {
       finishedGames: 'Partidos finalizados',
       searchPlayer: 'Buscar jugador',
       myFriends: 'Mis amigos',
-      gameCalendar: 'Calendario de partidos'
+      gameCalendar: 'Calendario de partidos',
+      searchCenter: 'Buscar centro'
     },
     friends: {
       friends: 'Amigos',
@@ -104,7 +108,8 @@ const messagesi18 = {
       Volley: 'Volley',
       Football: 'Fútbol',
       Padel: 'Pádel',
-      Swimming: 'Natación'
+      Swimming: 'Natación',
+      Gym: 'Gimnasio'
     },
     level: {
       veryLow: 'Muy bajo',

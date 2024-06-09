@@ -77,11 +77,20 @@
           <v-list-item-title>{{ $t('menu.searchPlayer') }}</v-list-item-title>
         </v-list-item>
 
+        <!-- My friends -->
         <v-list-item :disabled="!cIsLogged" link @click="$router.push('/friends')">
           <v-list-item-icon>
             <v-icon>mdi-account-group</v-icon>
           </v-list-item-icon>
           <v-list-item-title>{{ $t('menu.myFriends') }}</v-list-item-title>
+        </v-list-item>
+        
+        <!-- Search centers -->
+        <v-list-item link @click="$router.push('/searchCenter')">
+          <v-list-item-icon>
+            <v-icon>mdi-store-search</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ $t('menu.searchCenter') }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

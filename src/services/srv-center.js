@@ -14,6 +14,19 @@ const srvCenter = {
     return HTTP_APP.get('/center/centers', payload).then((response) => {
       return response.data
     })
+  },
+  async getCenter(centerId) {
+    let payload = {
+      params: {
+        centerId
+      }
+    }
+    return HTTP_APP.get('/center', payload).then((response) => {
+      return response.data
+    }).catch((error) => {
+      console.log(error)
+      throw error
+    })
   }
 
 }

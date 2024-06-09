@@ -14,6 +14,7 @@ import MyGames from '@/components/games/myGames/MyGames'
 import SearchPlayer from '@/components/player/SearchPlayer'
 import FriendsPage from '@/components/player/FriendsPage'
 import SearchCenter from '@/components/center/SearchCenter'
+import CenterPage from '@/components/center/CenterPage'
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,11 @@ const routes = [
     path: '/searchCenter',
     name: 'SearchCenter',
     component: SearchCenter
+  },
+  {
+    path: '/center/:idCenter',
+    name: 'CenterPage',
+    component: CenterPage
   }
 ]
 
