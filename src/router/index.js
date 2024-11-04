@@ -78,6 +78,11 @@ const routes = [
     path: '/center/:idCenter',
     name: 'CenterPage',
     component: CenterPage
+  },
+  {
+    path: '/findGame',
+    name: 'findGame',
+    component: FindGame
   }
 ]
 

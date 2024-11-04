@@ -7,19 +7,21 @@
             <small>{{dSelectedSport !== null ? $t('sport.' + dSelectedSport.name) : ''}}</small>
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 2" step="2" color="amber">{{$t("createGame.dateAndLocation")}}
-            <small>{{dSelectedDate !== null ? dSelectedDate : ''}}</small>
+          <v-stepper-step :complete="e1 > 2" step="2" color="amber">{{$t("createGame.dateAndTime")}}
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 3" step="3" color="amber">{{$t("createGame.numberOfPlayers")}}
+          <v-stepper-step :complete="e1 > 3" step="3" color="amber">{{$t("createGame.location")}}
+          </v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 4" step="4" color="amber">{{$t("createGame.numberOfPlayers")}}
             <!-- <small>{{dSelectedSport !== null ? $t('sport.' + dSelectedSport.name) : ''}}</small> -->
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 4" step="4" color="amber">{{$t("createGame.gameDescription")}}
+          <v-stepper-step :complete="e1 > 5" step="5" color="amber">{{$t("createGame.gameDescription")}}
             <!-- <small>{{dSelectedSport !== null ? $t('sport.' + dSelectedSport.name) : ''}}</small> -->
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step step="5" color="amber">{{$t("createGame.created")}}
+          <v-stepper-step step="6" color="amber">{{$t("createGame.created")}}
             <!-- <small>{{dSelectedSport !== null ? $t('sport.' + dSelectedSport.name) : ''}}</small> -->
           </v-stepper-step>
       </v-stepper-header>
@@ -39,7 +41,7 @@
           </v-container>
         </v-stepper-content>
 
-        <!-- Date and location selector -->
+        <!-- Date selector -->
         <v-stepper-content step="2">
           <v-container>
             <v-row class="mb-4">
@@ -72,17 +74,32 @@
                     <CenterCard :pCenter="dSelectedCenter" :pShowDetails="false"></CenterCard>
                   </v-row>
                 </v-col>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-layout justify-end>
-            <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
+                <p h2 class="black--text" align="center"><span>{{$t("createGame.selectTime")}}</span></p>
+                <v-layout justify-center>
+                  <v-time-picker v-model="dSelectedTime" color="blue-grey darken-2"></v-time-picker>
+                </v-layout>
             <v-btn color="amber" @click="fHandleDateLocation">{{$t("btn.next")}}</v-btn>
           </v-layout>
         </v-stepper-content>
 
-        <!-- Number of players selector -->
+        <!-- Location selector -->
         <v-stepper-content step="3">
+          <v-flex pt-4>
+            <p h2 class="black--text" align="center"><span>{{$t("createGame.addComment")}}</span></p>
+          </v-flex>
+          <v-container justify-center>
+            <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLocation")}}</span></p>
+            <v-autocomplete v-model="dSelectedProvince" :items="dProvinces" :label="$t('createGame.addProvince')" item-value="id" item-text="name" solo></v-autocomplete>
+            <v-text-field :value="dSelectedLocation" :label="$t('createGame.addLocation')" clearable></v-text-field>
+          </v-container>
+          <v-layout justify-end>
+            <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
+            <v-btn color="amber" @click="fHandleLocation">{{$t("btn.next")}}</v-btn>
+          </v-layout>
+        </v-stepper-content>
+
+        <!-- Number of players selector -->
+        <v-stepper-content step="4">
           <v-container>
             <v-row>
               <v-col align-start cols="1" lg="6">
@@ -110,7 +127,7 @@
         </v-stepper-content>
 
         <!-- Description selector -->
-        <v-stepper-content step="4">
+        <v-stepper-content step="5">
           <v-flex pt-4>
             <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.addComment")}}</span></p>
           </v-flex>
@@ -185,6 +202,7 @@ import srvCenter from '@/services/srv-center'
         dGame: {},
         dSelectedSport: null,
         dSelectedDate: format(parseISO(new Date().toISOString()), 'yyyy-MM-dd'),
+        dSelectedTime: '12:00',
         dDatePicker: false,
         dSelectedLocation: null,
         dNumberPlayers: 1,
@@ -229,7 +247,7 @@ import srvCenter from '@/services/srv-center'
         this.dGame.playerCreator = JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id
         this.e1 += 1
       },
-      fHandleDateLocation () {
+      fHandleDate () {
         this.dGame.date = this.dSelectedDate
         this.dGame.time = this.dSelectedTime
         this.dGame.location = this.dSelectedLocation

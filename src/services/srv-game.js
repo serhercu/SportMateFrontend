@@ -109,6 +109,13 @@ const srvGame = {
       console.log(error)
       throw error
     })
+  },
+  findGameWithParams(payload) {
+    return HTTP_APP.get('/game/findGameWithParams', payload).then((response) => {
+      return response
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 }
 
