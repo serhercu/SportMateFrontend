@@ -1,9 +1,6 @@
 <template>
 <div>
   <v-flex ma-4>
-    <v-flex pt-10>
-        <p h1 class="grey--text"><span>{{$t("createGame.createGame")}}</span></p>
-    </v-flex>
     <v-stepper v-model="e1" flat >
       <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1" color="amber">{{$t("createGame.sport")}}
@@ -33,7 +30,7 @@
         <!-- Sport selector -->
         <v-stepper-content step="1">
           <v-flex pt-4>
-            <p h2 class="black--text" align="center"><span>{{$t("createGame.selectSport")}}</span></p>
+            <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.selectSport")}}</span></p>
           </v-flex>
           <v-container v-bind="{ [`grid-list-${size}`]: true }" fluid>
             <v-layout row wrap>
@@ -47,25 +44,41 @@
         <!-- Date selector -->
         <v-stepper-content step="2">
           <v-container>
-            <v-row>
+            <v-row class="mb-4">
               <v-col cols="12" lg="6">
-                <p h2 class="black--text" align="center"><span>{{$t("createGame.selectDate")}}</span></p>
+                <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.selectDate")}}</span></p>
                 <v-layout justify-center>
-                  <v-date-picker v-model="dSelectedDate" @change="dDatePicker = false" color="blue-grey darken-2" locale="es-es"></v-date-picker>
+                  <v-date-picker v-model="dSelectedDate" :min="dMinDate" :max="dMaxDate" @change="dDatePicker = false" color="blue-grey darken-2" locale="es-es"></v-date-picker>
                 </v-layout>
-                <v-text-field :value="cDateFormatted" readonly @click:clear="dSelectedDate = null"></v-text-field>
+                <v-layout justify-center>
+                  <v-text-field v-model="dSelectedTime" :label="$t('createGame.selectHour')" persistent-hint type="time"></v-text-field>
+                </v-layout>
               </v-col>
               <v-col cols="12" lg="6">
+                <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.selectLocation")}}</span></p>
+                <v-autocomplete v-model="dSelectedCity" :items="dCities" :label="$t('createGame.addCity')" item-value="id" item-text="name" 
+                  return-object solo prepend-icon="mdi-city-variant-outline" color="amber">
+                </v-autocomplete>
+                <v-col v-if="dSelectedCity !== null">
+                  <v-select v-model="dSelectedCenter" :items="dCenters" :label="$t('createGame.addCenter')" prepend-icon="mdi-store-search" 
+                    item-text="name" return-object color="amber" clearable :disabled="dSelectedLocation !== null">
+                    <template v-slot:item="{ item }">
+                      <v-icon color="yellow">mdi-star</v-icon>
+                      <span>{{ item.name }}</span>
+                    </template>
+                  </v-select>
+                  <v-text-field v-if="dSelectedCenter == null" v-model="dSelectedLocation" :label="$t('createGame.addLocation')" prepend-icon="mdi-map-marker" 
+                    color="amber" clearable>
+                  </v-text-field>
+                  <v-row v-if="dSelectedCenter !== null" class="mx-4">
+                    <CenterCard :pCenter="dSelectedCenter" :pShowDetails="false"></CenterCard>
+                  </v-row>
+                </v-col>
                 <p h2 class="black--text" align="center"><span>{{$t("createGame.selectTime")}}</span></p>
                 <v-layout justify-center>
                   <v-time-picker v-model="dSelectedTime" color="blue-grey darken-2"></v-time-picker>
                 </v-layout>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-layout justify-end>
-            <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-            <v-btn color="amber" @click="fHandleDate">{{$t("btn.next")}}</v-btn>
+            <v-btn color="amber" @click="fHandleDateLocation">{{$t("btn.next")}}</v-btn>
           </v-layout>
         </v-stepper-content>
 
@@ -90,13 +103,13 @@
           <v-container>
             <v-row>
               <v-col align-start cols="1" lg="6">
-                <p h2 class="black--text" align="center"><span>{{$t("createGame.selectNumberPlayers")}}</span></p>
+                <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.selectNumberPlayers")}}</span></p>
                 <NumberSelector v-model="dNumberPlayers" @changeNumber="fChangeNumber"></NumberSelector>
                 <v-switch v-model="dPrivacySwitch" :label="$t('createGame.privateGame')" color="amber" hide-details></v-switch>
               </v-col>
               <v-col align-start cols="1" lg="6">
-                <p h2 class="black--text" align="center"><span>{{$t("createGame.selectLevel")}}</span></p>
-                <v-select v-model="dLevelSelected" :items="dLevels" item-value="value" solo>
+                <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.selectLevel")}}</span></p>
+                <v-select v-model="dLevelSelected" :items="dLevels" return-object solo>
                   <template v-slot:item="{ item }">
                     <span>{{ $t('level.' + item.description) }}</span>
                   </template>
@@ -116,7 +129,7 @@
         <!-- Description selector -->
         <v-stepper-content step="5">
           <v-flex pt-4>
-            <p h2 class="black--text" align="center"><span>{{$t("createGame.addComment")}}</span></p>
+            <p h2 class="black--text" align="center"><span class="subtitle-upper">{{$t("createGame.addComment")}}</span></p>
           </v-flex>
           <v-container>
             <v-textarea v-model="dSelectedDescription" clearable clear-icon="mdi-close-circle" :label="$t('general.optional')"></v-textarea>
@@ -128,11 +141,20 @@
         </v-stepper-content>
 
         <!-- Created -->
-        <v-stepper-content step="6">
-            <v-layout justify-end>
-              <v-btn text @click="e1 -= 1">{{$t("btn.back")}}</v-btn>
-              <v-btn color="amber" @click="e1 = 1">{{$t("btn.next")}}</v-btn>
-            </v-layout>
+        <v-stepper-content step="5">
+          <v-row justify="center" align="center">
+            <v-col class="text-center mt-2" cols="auto">
+              <v-row>
+                <v-icon x-large color="green">mdi-check-circle-outline</v-icon>
+                <h1>{{$t('createGame.created')}}</h1>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-btn color="amber" @click="$router.push('/home')">{{$t("btn.home")}}</v-btn>
+                </v-col>
+              </v-row>
+            </v-col>   
+          </v-row>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -155,18 +177,23 @@
 
 import SportCard from '@/components/cards/SportCard'
 import NumberSelector from '@/components/util/NumberSelector'
+import CenterCard from '@/components/cards/CenterCard'
 
 import { format, parseISO } from 'date-fns'
+
+import Constants from '@/util/constants'
 
 import srvSport from '@/services/srv-sport'
 import srvGame from '@/services/srv-game'
 import srvLevel from '@/services/srv-level'
-import srvProvince from '@/services/srv-province'
+import srvCity from '@/services/srv-city'
+import srvCenter from '@/services/srv-center'
 
   export default {
     components: {
       SportCard,
-      NumberSelector
+      NumberSelector,
+      CenterCard
     },
     data () {
       return {
@@ -183,14 +210,19 @@ import srvProvince from '@/services/srv-province'
         dSelectedDescription: '',
         dLevels: [],
         dLevelSelected: null,
-        dProvinces: [],
-        dSelectedProvince: null
+        dCities: [],
+        dSelectedCity: null,
+        dSelectedTime: null,
+        dCenters: [],
+        dSelectedCenter: null,
+        dMinDate: new Date().toISOString().substr(0, 10),
+        dMaxDate: this.fAddMonths(new Date(), 6).toISOString().slice(0, 10)
       }
     },
     mounted() {
       this.fGetAllSports()
       this.fGetAllLevels()
-      this.fGetAllProvinces()
+      this.fGetAllCities()
     },
     methods: {
       fGetAllSports () {
@@ -204,39 +236,35 @@ import srvProvince from '@/services/srv-province'
           this.dLevelSelected = result[2]
         })
       },
-      fGetAllProvinces() {
-        srvProvince.getAllProvinces().then((result) => {
-          this.dProvinces = result
+      fGetAllCities() {
+        srvCity.getAllCities().then((result) => {
+          this.dCities = result
         })
       },
       fHandleSportSelect (sport) {
         this.dSelectedSport = sport
         this.dGame.sport = this.dSelectedSport
+        this.dGame.playerCreator = JSON.parse(localStorage.getItem(Constants.PLAYER_INFO)).id
         this.e1 += 1
       },
       fHandleDate () {
         this.dGame.date = this.dSelectedDate
         this.dGame.time = this.dSelectedTime
-        this.e1 += 1
-      },
-      fHandleLocation () {
         this.dGame.location = this.dSelectedLocation
-        this.dGame.province = this.dSelectedProvince
+        this.dGame.city = this.dSelectedCity
+        this.dGame.center = this.dSelectedCenter
         this.e1 += 1
       },
       fHandlePlayersSelect () {
         this.dGame.players = this.dNumberPlayers
-        if (this.dPrivacySwitch) {
-          this.dGame.privacy = 1
-        } else {
-          this.dGame.privacy = 0
-        }
+        this.dGame.privacy = this.dPrivacySwitch ? 1 : 0
         this.dGame.level = this.dLevelSelected
         this.e1 += 1
       },
       fHandleDescriptionSelector () {
         this.dGame.description = this.dSelectedDescription
-        this.fCreateGame()
+        this.fCreateGame()        
+        this.e1 += 1
       },
       fChangeNumber(val) {
         this.dNumberPlayers = val
@@ -244,12 +272,24 @@ import srvProvince from '@/services/srv-province'
       fCreateGame () {
         srvGame.createGame(this.dGame).then(() => {
         })
+      },
+      fGetCenters() {
+        srvCenter.searchCenters(null, this.dSelectedCity.id, null).then((res) => {
+          this.dCenters = res
+        })
+      },
+      fAddMonths(date, months) {
+        const result = new Date(date);
+        result.setMonth(result.getMonth() + months);
+        return result;
       }
     },
-    computed: {
-      cDateFormatted () {
-        return this.dSelectedDate ? this.$moment(this.dSelectedDate).format('dddd, MMMM Do YYYY') : ''
-      },
+    watch: {
+      dSelectedCity() {
+        if (this.dSelectedCity !== null) {
+          this.fGetCenters()
+        }
+      }
     }
   }
 </script>
